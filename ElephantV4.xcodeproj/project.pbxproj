@@ -20,6 +20,11 @@
 		44C76292296D46FC006F762E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C76291296D46FC006F762E /* Item.swift */; };
 		44C76294296D4761006F762E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C76293296D4761006F762E /* Model.swift */; };
 		44C76296296D477F006F762E /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C76295296D477F006F762E /* CalendarHelper.swift */; };
+		44C76298296D4B09006F762E /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C76297296D4B09006F762E /* Project.swift */; };
+		44C7629A296D4BAE006F762E /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C76299296D4BAE006F762E /* Placeholder.swift */; };
+		44C7629D296D4F7B006F762E /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C7629B296D4F7B006F762E /* ItemCell.swift */; };
+		44C7629E296D4F7B006F762E /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44C7629C296D4F7B006F762E /* ItemCell.xib */; };
+		44C762A0296D50FA006F762E /* Objective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C7629F296D50FA006F762E /* Objective.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +62,11 @@
 		44C76291296D46FC006F762E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		44C76293296D4761006F762E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		44C76295296D477F006F762E /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		44C76297296D4B09006F762E /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		44C76299296D4BAE006F762E /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
+		44C7629B296D4F7B006F762E /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		44C7629C296D4F7B006F762E /* ItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
+		44C7629F296D50FA006F762E /* Objective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objective.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +120,13 @@
 				44C7625E296D44CC006F762E /* AppDelegate.swift */,
 				44C76260296D44CC006F762E /* SceneDelegate.swift */,
 				44C76262296D44CC006F762E /* ViewController.swift */,
+				44C7629B296D4F7B006F762E /* ItemCell.swift */,
+				44C7629C296D4F7B006F762E /* ItemCell.xib */,
 				44C76291296D46FC006F762E /* Item.swift */,
 				44C76293296D4761006F762E /* Model.swift */,
+				44C76299296D4BAE006F762E /* Placeholder.swift */,
+				44C76297296D4B09006F762E /* Project.swift */,
+				44C7629F296D50FA006F762E /* Objective.swift */,
 				44C76295296D477F006F762E /* CalendarHelper.swift */,
 				44C76264296D44CC006F762E /* Main.storyboard */,
 				44C7626A296D44CC006F762E /* Assets.xcassets */,
@@ -243,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44C7629E296D4F7B006F762E /* ItemCell.xib in Resources */,
 				44C7626E296D44CC006F762E /* LaunchScreen.storyboard in Resources */,
 				44C7626B296D44CC006F762E /* Assets.xcassets in Resources */,
 				44C76266296D44CC006F762E /* Main.storyboard in Resources */,
@@ -271,12 +287,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				44C76292296D46FC006F762E /* Item.swift in Sources */,
+				44C762A0296D50FA006F762E /* Objective.swift in Sources */,
 				44C76263296D44CC006F762E /* ViewController.swift in Sources */,
 				44C7625F296D44CC006F762E /* AppDelegate.swift in Sources */,
 				44C76294296D4761006F762E /* Model.swift in Sources */,
+				44C7629D296D4F7B006F762E /* ItemCell.swift in Sources */,
 				44C76269296D44CC006F762E /* ElephantV4.xcdatamodeld in Sources */,
 				44C76261296D44CC006F762E /* SceneDelegate.swift in Sources */,
 				44C76296296D477F006F762E /* CalendarHelper.swift in Sources */,
+				44C76298296D4B09006F762E /* Project.swift in Sources */,
+				44C7629A296D4BAE006F762E /* Placeholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

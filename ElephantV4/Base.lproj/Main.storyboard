@@ -143,11 +143,30 @@
                                     <constraint firstAttribute="width" constant="380" id="iCT-Vh-5DC"/>
                                 </constraints>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="h1O-wh-vlX">
+                                <rect key="frame" x="5" y="333" width="380" height="159"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="380" id="LE6-gF-jfa"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="EQV-24-dgi">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="380" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EQV-24-dgi" id="Xke-3g-t7R">
+                                            <rect key="frame" x="0.0" y="0.0" width="380" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="h1O-wh-vlX" firstAttribute="top" secondItem="l15-ej-1fB" secondAttribute="bottom" constant="50" id="2g8-FH-km1"/>
                             <constraint firstItem="l15-ej-1fB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mSA-HU-bYk"/>
+                            <constraint firstItem="h1O-wh-vlX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mes-un-9OL"/>
                             <constraint firstItem="l15-ej-1fB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vod-44-G7z"/>
                         </constraints>
                     </view>
@@ -157,6 +176,7 @@
                     <connections>
                         <outlet property="completeRateLabel" destination="Qwm-UD-Hcp" id="re6-vw-REP"/>
                         <outlet property="dailyRateLabel" destination="VPp-UH-POu" id="eBz-Ww-d20"/>
+                        <outlet property="itemTableView" destination="h1O-wh-vlX" id="iQx-sH-XkF"/>
                         <outlet property="startButtonOutlet" destination="j93-DL-qeN" id="2j6-FF-WX3"/>
                         <outlet property="timeLabel" destination="z5u-7s-Qie" id="HHh-Kd-kYF"/>
                         <outlet property="totalTasksLabel" destination="5Lj-ap-YEf" id="hkz-Ys-Mbg"/>
@@ -164,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1037" y="105"/>
+            <point key="canvasLocation" x="1036.9230769230769" y="104.50236966824644"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gqk-xx-Ygx">

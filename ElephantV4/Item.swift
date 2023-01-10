@@ -7,7 +7,6 @@ struct Item: Codable {
     var project: String
     var uniqueNum: Int
     var status: String
-    var placeholder: Bool
     var projCounter: Int?
     
 }
