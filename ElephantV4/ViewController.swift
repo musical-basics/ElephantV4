@@ -62,6 +62,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let projSelected = currentSelection.project
+        
+        if (segue.identifier == "showProjectOfItem") {
+            let viewController = segue.destination as? ProjectItemsViewController
+            viewController?.selectedProject = projSelected
+        }
+    }
     
     
     
@@ -84,7 +92,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             itemShown = model.activeArray[indexPath.row].title
         }
-        
         
 //        if let currentItem = model.projectDictionary[projLookup]?.activeItems[0] {
 //            cell.titleLabel.text = currentItem.title

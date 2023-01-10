@@ -129,6 +129,7 @@
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="showItemProjectPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uTs-rK-gQo"/>
+                                                    <segue destination="y2H-e7-xdH" kind="show" identifier="showProjectOfItem" id="MYr-dU-F2G"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1f-uu-CZ4">
@@ -183,20 +184,42 @@
             </objects>
             <point key="canvasLocation" x="1036.9230769230769" y="104.50236966824644"/>
         </scene>
-        <!--View Controller-->
+        <!--Project Items-->
         <scene sceneID="4OM-nf-Ddw">
             <objects>
-                <viewController id="y2H-e7-xdH" sceneMemberID="viewController">
+                <viewController id="y2H-e7-xdH" customClass="ProjectItemsViewController" customModule="ElephantV4" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6em-34-nJO">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected Project Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4H-PE-cKP">
+                                <rect key="frame" x="109.66666666666669" y="103" width="171" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="AJZ-gV-6ZQ">
+                                <rect key="frame" x="16" y="182" width="358" height="628"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="0Ol-z9-7f8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="G4H-PE-cKP" firstAttribute="centerX" secondItem="6em-34-nJO" secondAttribute="centerX" id="TRj-Bj-xUq"/>
+                            <constraint firstItem="G4H-PE-cKP" firstAttribute="top" secondItem="0Ol-z9-7f8" secondAttribute="top" constant="15" id="ZI6-kC-ecE"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Project Items" id="Hbh-Gy-DJx"/>
+                    <connections>
+                        <outlet property="projItemsTable" destination="AJZ-gV-6ZQ" id="Dn6-dm-BcH"/>
+                        <outlet property="selectedProjectLabel" destination="G4H-PE-cKP" id="otu-S0-Ihc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQu-ai-Xlp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1911" y="105"/>
+            <point key="canvasLocation" x="1910.7692307692307" y="104.50236966824644"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gqk-xx-Ygx">
