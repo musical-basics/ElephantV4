@@ -15,9 +15,11 @@ struct Project: Codable {
     var type: String
     var deadline: Date?
     var objectives: [Objective]?
-    var actualItems: [Item]
     
     var itemCounter: Int
+    var activeItems: [Item]
+    var inactiveItems: [Item]
+    
     var placeholderCounter: Int
     var activePlaceholders: [Placeholder]
     var inactivePlaceholders: [Placeholder]
@@ -25,13 +27,13 @@ struct Project: Codable {
     mutating func itemAdd(newItem: Item){
         var currentItem = newItem
         currentItem.projCounter = itemCounter
-        actualItems.append(currentItem)
+        activeItems.append(currentItem)
         itemCounter += 1
     }
     
     mutating func priorityDeclaration() {
         for _ in 1...priority {
-            let newPlaceholder = Placeholder(title: "\(name) Placeholder", project: name, uniqueNum: placeholderCounter)
+            let newPlaceholder = Placeholder(title: "\(name) Placeholder", project: name, indx: placeholderCounter, status: "Active")
             placeholderCounter += 1
             activePlaceholders.append(newPlaceholder)
         }
@@ -41,7 +43,7 @@ struct Project: Codable {
         if newPriority > priority {
             let priorityDiff = newPriority - priority
             for _ in 1...priorityDiff {
-                let newPlaceholder = Placeholder(title: "\(name) Placeholder", project: name, uniqueNum: placeholderCounter)
+                let newPlaceholder = Placeholder(title: "\(name) Placeholder", project: name, indx: placeholderCounter, status: "Inactive")
                 placeholderCounter += 1
                 inactivePlaceholders.append(newPlaceholder)
             }

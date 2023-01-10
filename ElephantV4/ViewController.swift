@@ -13,30 +13,61 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var itemTableView: UITableView!
     
 //    var currentSelection: Item = Item(title: "Placeholder", timeDone: Date(), project: "None", uniqueNum: 0, status: "Active")
-    var currentSelection: Placeholder = Placeholder(title: "Placeholder", project: "None", uniqueNum: 0)
+    var currentSelection: Placeholder = Placeholder(title: "Placeholder", project: "None", indx: 0, status: "Active")
     var currentIndx = 0
-    var numItemsShown = 1
+    var numItemsShown = 10
     var timer = Timer()
     var (hours, minutes, seconds) = (0, 0, 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        currentSelection = model.activeArray[0]
+        
+        itemTableView.delegate = self
+        itemTableView.dataSource = self
+        
+        currentSelection = model.activeArray[0]
         itemTableView.register(UINib(nibName: "ItemCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         timeLabel.numberOfLines = 0;
         timeLabel.lineBreakMode = .byWordWrapping;
+        itemTableView.reloadData()
     }
     
     
     
     
+    
+    
+    
+    
+    
+    
+    
+//MARK: - TABLE VIEW METHODS
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numItemsShown
+        return model.activeArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = itemTableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! ItemCell
-        cell.titleLabel.text = model.activeArray[indexPath.row].title
+        
+        let projLookup = model.activeArray[indexPath.row].project
+        let numIndex = model.activeArray[indexPath.row].indx - 1
+        
+        var itemShown = ""
+        if let currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
+            itemShown = currentItem.title
+        } else {
+            itemShown = model.activeArray[indexPath.row].title
+        }
+        
+        
+//        if let currentItem = model.projectDictionary[projLookup]?.activeItems[0] {
+//            cell.titleLabel.text = currentItem.title
+//        }
+        
+        cell.titleLabel.text = itemShown
+//        cell.titleLabel.text = model.activeArray[indexPath.row].title
         cell.titleLabel?.numberOfLines = 0;
         cell.titleLabel?.lineBreakMode = .byWordWrapping;
 
@@ -95,3 +126,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 }
 
+extension Collection {
+    /// Returns the element at the specified index if it is within bounds, otherwise nil.
+    subscript (safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}

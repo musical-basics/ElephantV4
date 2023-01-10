@@ -16,18 +16,23 @@ class ItemCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        sendSubviewToBack(contentView)
-//        NSLayoutConstraint.activate([
-//            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 5),
-//            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-//            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-//            titleLabel.bottomAnchor.constraint(equalTo: projLabel.topAnchor),
-//
-//            projLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-//            projLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-//            projLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-//            projLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-//        ])
+//        sendSubviewToBack(contentView)
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 5),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: objectiveLabel.topAnchor),
+            
+            objectiveLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            objectiveLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            objectiveLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            objectiveLabel.bottomAnchor.constraint(equalTo: projLabel.topAnchor),
+
+            projLabel.topAnchor.constraint(equalTo: objectiveLabel.bottomAnchor),
+            projLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            projLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            projLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
         
         titleLabel?.numberOfLines = 0;
         titleLabel?.lineBreakMode = .byWordWrapping;
