@@ -41,10 +41,10 @@ class Model {
         [
             Placeholder(title: "Tenth Item", timeDone: Date(), project: "None", indx: 10, status: "Inact"),
             Placeholder(title: "Eleventh Item", timeDone: Date(), project: "None", indx: 11, status: "Inact"),
-            Placeholder(title: "Twelveth Item", timeDone: Date(), project: "Piano", indx: 12, status: "Inact"),
+            Placeholder(title: "Piano Placeholder 4", timeDone: Date(), project: "Piano", indx: 12, status: "Inact"),
             Placeholder(title: "Thirteenth Item", timeDone: Date(), project: "None", indx: 13, status: "Inact"),
-            Placeholder(title: "Fourteenth Item", timeDone: Date(), project: "Piano", indx: 14, status: "Inact"),
-            Placeholder(title: "Fifteenth Item", timeDone: Date(), project: "Piano", indx: 15, status: "Inact")
+            Placeholder(title: "Piano Placeholder 5", timeDone: Date(), project: "Piano", indx: 14, status: "Inact"),
+            Placeholder(title: "Piano Placeholder 6", timeDone: Date(), project: "Piano", indx: 15, status: "Inact")
         ]
         
 //        projectArray =
@@ -100,6 +100,100 @@ class Model {
         
         
     }
+    
+    //MARK: - COMPLETE ITEM FUNCTIONS
+    
+    func activateNextItem() {
+        
+        for (projName, proj) in projectDictionary {
+            let filteredActiveArray = activeArray.filter({ $0.project == projName})
+            let filteredInactiveArray = inactiveArray.filter({ $0.project == projName})
+            
+            var indexHighest: Float = 0
+            
+            if filteredActiveArray.count == 0 {
+                indexHighest = 0
+            } else {
+                let levelCheck = activeArray.firstIndex { $0.project == projName }
+                indexHighest = Float(levelCheck!)
+            }
+            let level = (Float(activeArray.count) / Float(proj.priority)) * Float(filteredActiveArray.count)
+            let finalLevel = Float(activeArray.count) - level
+            
+            if filteredActiveArray.count >= proj.priority || filteredInactiveArray.count == 0 || indexHighest >= finalLevel {
+                print("Nothing was added for \(projName) with priority \(proj.priority)")
+            } else {
+                let currentIndex = inactiveArray.firstIndex { $0.indx == filteredInactiveArray[0].indx }
+                inactiveArray[currentIndex!].status = "Active"
+                let itemAdded = inactiveArray[currentIndex!]
+                
+                activeArray.append(itemAdded)
+                inactiveArray.remove(at: currentIndex!)
+                print("we added item \(itemAdded.title) from project \(projName) with priority \(proj.priority)")
+            }
+        }
+        
+        
+        
+        for indx in projectArray {
+            print("hello")
+            let filteredActiveArray = activeArray.filter({ $0.project == indx.name})
+            let filteredInactiveArray = inactiveArray.filter({ $0.project == indx.name})
+            
+            var indexHighest: Float = 0
+            
+            if filteredActiveArray.count == 0 {
+                indexHighest = 0
+            } else {
+                let levelCheck = activeArray.firstIndex { $0.project == indx.name }
+                indexHighest = Float(levelCheck!)
+            }
+            
+            let level = (Float(activeArray.count) / Float(indx.priority)) * Float(filteredActiveArray.count)
+            let finalLevel = Float(activeArray.count) - level
+            
+            if filteredActiveArray.count >= indx.priority || filteredInactiveArray.count == 0 || indexHighest >= finalLevel {
+                print("Nothing was added for \(indx.name) with priority \(indx.priority)")
+            } else {
+                let currentIndex = inactiveArray.firstIndex { $0.indx == filteredInactiveArray[0].indx }
+                inactiveArray[currentIndex!].status = "Active"
+                let itemAdded = inactiveArray[currentIndex!]
+                activeArray.append(itemAdded)
+                inactiveArray.remove(at: currentIndex!)
+                print("we added item \(itemAdded.title) from project \(indx.name) with priority \(indx.priority)")
+            }
+            
+        }
+    }
+    
+    
+    func completeItem(index: Int) {
+        let currentIndex = activeArray.firstIndex { $0.indx == index }
+        
+        let currentProjectOfItem = activeArray[currentIndex!].project
+        
+        let projectType = projectDictionary[currentProjectOfItem]!.type
+        
+        
+        if projectType == "Cycle" {
+            activeArray[currentIndex!].status = "Inactive"
+            inactiveArray.append(activeArray[currentIndex!])
+        } else {
+            print("none")
+        }
+        activeArray[currentIndex!].status = "Done"
+        activeArray[currentIndex!].timeDone = Date()
+//        savedItems.append(activeArray[currentIndex!])
+        activeArray.remove(at: currentIndex!)
+
+    }
+
+    
+    
+    
+    
+    
+    
     
     //MARK: - FILE MANAGEMENT FUNCTIONS
     

@@ -102,6 +102,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Complete Item">
                                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="completeItemPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ixn-nx-suj"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -124,6 +127,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Show Item Project">
                                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="showItemProjectPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uTs-rK-gQo"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1f-uu-CZ4">
                                                 <rect key="frame" x="262" y="0.0" width="118" height="33.333333333333336"/>
@@ -176,6 +182,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1036.9230769230769" y="104.50236966824644"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="4OM-nf-Ddw">
+            <objects>
+                <viewController id="y2H-e7-xdH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6em-34-nJO">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="0Ol-z9-7f8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TQu-ai-Xlp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1911" y="105"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gqk-xx-Ygx">
