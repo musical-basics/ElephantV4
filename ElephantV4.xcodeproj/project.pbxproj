@@ -17,6 +17,9 @@
 		44C76279296D44CC006F762E /* ElephantV4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C76278296D44CC006F762E /* ElephantV4Tests.swift */; };
 		44C76283296D44CC006F762E /* ElephantV4UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C76282296D44CC006F762E /* ElephantV4UITests.swift */; };
 		44C76285296D44CC006F762E /* ElephantV4UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C76284296D44CC006F762E /* ElephantV4UITestsLaunchTests.swift */; };
+		44C76292296D46FC006F762E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C76291296D46FC006F762E /* Item.swift */; };
+		44C76294296D4761006F762E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C76293296D4761006F762E /* Model.swift */; };
+		44C76296296D477F006F762E /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C76295296D477F006F762E /* CalendarHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		44C7627E296D44CC006F762E /* ElephantV4UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElephantV4UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C76282296D44CC006F762E /* ElephantV4UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElephantV4UITests.swift; sourceTree = "<group>"; };
 		44C76284296D44CC006F762E /* ElephantV4UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElephantV4UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		44C76291296D46FC006F762E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		44C76293296D4761006F762E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		44C76295296D477F006F762E /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,9 @@
 				44C7625E296D44CC006F762E /* AppDelegate.swift */,
 				44C76260296D44CC006F762E /* SceneDelegate.swift */,
 				44C76262296D44CC006F762E /* ViewController.swift */,
+				44C76291296D46FC006F762E /* Item.swift */,
+				44C76293296D4761006F762E /* Model.swift */,
+				44C76295296D477F006F762E /* CalendarHelper.swift */,
 				44C76264296D44CC006F762E /* Main.storyboard */,
 				44C7626A296D44CC006F762E /* Assets.xcassets */,
 				44C7626C296D44CC006F762E /* LaunchScreen.storyboard */,
@@ -261,10 +270,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44C76292296D46FC006F762E /* Item.swift in Sources */,
 				44C76263296D44CC006F762E /* ViewController.swift in Sources */,
 				44C7625F296D44CC006F762E /* AppDelegate.swift in Sources */,
+				44C76294296D4761006F762E /* Model.swift in Sources */,
 				44C76269296D44CC006F762E /* ElephantV4.xcdatamodeld in Sources */,
 				44C76261296D44CC006F762E /* SceneDelegate.swift in Sources */,
+				44C76296296D477F006F762E /* CalendarHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
