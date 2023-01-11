@@ -32,14 +32,129 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
     
 //MARK: - TABLE VIEW METHODS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        let objectiveListCount = model.projectDictionary[selectedProject]?.objectiveList.count
+        return objectiveListCount!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = projItemsTable.dequeueReusableCell(withIdentifier: "ObjectiveIdentifier", for: indexPath) as! ObjectiveCell
         
+        
+        let newList = model.projectDictionary[selectedProject]?.objectiveList
+        
+        
+//        let projLookup = model.activeArray[indexPath.row].project
+//        let numIndex = model.activeArray[indexPath.row].indx - 1
+//
+        var objectiveShown = ""
+//        if let currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
+//            itemShown = currentItem.title
+//        } else {
+//            itemShown = model.activeArray[indexPath.row].title
+//        }
+
+        var item1Shown = ""
+        var item2Shown = ""
+        var item3Shown = ""
+        var item4Shown = ""
+        
+        var itemsToShow = [item1Shown, item2Shown, item3Shown, item4Shown]
+        
+        if let currentObjective = model.projectDictionary[selectedProject]?.objectiveList[safe: indexPath.row] {
+            objectiveShown = currentObjective.name
+            
+            var tempCounter = 0
+            for indx in itemsToShow {
+                if let itemShown = currentObjective.items[safe: tempCounter] {
+                    itemsToShow[tempCounter] = currentObjective.items[tempCounter].title
+                } else {
+                    itemsToShow[tempCounter] = ""
+                }
+                tempCounter += 1
+            }
+            
+        } else {
+            objectiveShown = ""
+        }
+        
+        cell.titleLabel.text = "Objective: \(objectiveShown)"
+        
+        cell.item1Label.text = itemsToShow[0]
+        cell.item1Label?.numberOfLines = 0;
+        cell.item1Label?.lineBreakMode = .byWordWrapping;
+
+        cell.item2Label.text = itemsToShow[1]
+        cell.item2Label?.numberOfLines = 0;
+        cell.item2Label?.lineBreakMode = .byWordWrapping;
+        
+        cell.item3Label.text = itemsToShow[2]
+        cell.item3Label?.numberOfLines = 0;
+        cell.item3Label?.lineBreakMode = .byWordWrapping;
+        
+        cell.item4Label.text = itemsToShow[3]
+        cell.item4Label?.numberOfLines = 0;
+        cell.item4Label?.lineBreakMode = .byWordWrapping;
+        
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        var selectedObjective = model.projectDictionary[self.selectedProject]?.objectiveList[safe: indexPath.row]
+        
+//        if let checkObj = model.projectDictionary[self.selectedProject]?.objectiveList[safe: indexPath.row] {
+//            selectedObjective = checkObj
+//        }
+        
+        
+        
+        
+        
+        var textField = UITextField()
+        var textField2 = UITextField()
+        let alert = UIAlertController(title: "Edit Objective", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Edit Objective", style: .default) { (action) in
+            selectedObjective!.name = textField.text!
+            selectedObjective!.items[0].title = textField2.text!
+            model.projectDictionary[self.selectedProject]?.objectiveList[indexPath.row] = selectedObjective!
+            model.saveItems()
+            self.projItemsTable.reloadData()
+        }
+        
+        alert.addAction(action)
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = model.projectDictionary[self.selectedProject]?.objectiveList[indexPath.row].name
+            alertTextField.text = model.projectDictionary[self.selectedProject]?.objectiveList[indexPath.row].name
+            textField = alertTextField
+        }
+        
+        
+        
+        alert.addTextField { (alertTextField) in
+            if var item1 = selectedObjective!.items[safe: 0] {
+                alertTextField.text = selectedObjective!.items[0].title
+                textField2 = alertTextField
+            }
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            print("Cancelled")
+        })
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+
+        
+        
+        
+        
+//        currentSelection = model.activeArray[indexPath.row]
+//        currentIndx = indexPath.row
+    }
+    
     
 
 }

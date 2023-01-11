@@ -211,7 +211,9 @@
                             <constraint firstItem="G4H-PE-cKP" firstAttribute="top" secondItem="0Ol-z9-7f8" secondAttribute="top" constant="15" id="ZI6-kC-ecE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Project Items" id="Hbh-Gy-DJx"/>
+                    <navigationItem key="navigationItem" title="Project Items" id="Hbh-Gy-DJx">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="PGv-VX-6br"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="projItemsTable" destination="AJZ-gV-6ZQ" id="Dn6-dm-BcH"/>
                         <outlet property="selectedProjectLabel" destination="G4H-PE-cKP" id="otu-S0-Ihc"/>
@@ -220,6 +222,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQu-ai-Xlp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1910.7692307692307" y="104.50236966824644"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Mam-fy-L9s">
+            <objects>
+                <viewController id="VlR-Fb-vld" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5GE-3Z-e20">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="e0u-Rl-BmD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YjW-QE-cJR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2697" y="100"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gqk-xx-Ygx">
