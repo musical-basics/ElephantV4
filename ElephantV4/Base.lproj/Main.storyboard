@@ -178,7 +178,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CeY-go-n87">
-                        <barButtonItem key="rightBarButtonItem" title="Show Projects" id="M7Y-fp-9gP"/>
+                        <barButtonItem key="rightBarButtonItem" title="Show Projects" id="M7Y-fp-9gP">
+                            <connections>
+                                <segue destination="wjK-kU-ARe" kind="show" identifier="ShowProjectsPage" id="56V-Z9-Zvm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="completeRateLabel" destination="Qwm-UD-Hcp" id="re6-vw-REP"/>
@@ -193,20 +197,55 @@
             </objects>
             <point key="canvasLocation" x="1036.9230769230769" y="104.50236966824644"/>
         </scene>
-        <!--Projects View Controller-->
+        <!--All Projects-->
         <scene sceneID="7TQ-Gn-YEU">
             <objects>
                 <viewController id="wjK-kU-ARe" customClass="ProjectsViewController" customModule="ElephantV4" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EYg-8i-1af">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IN7-ot-htR">
+                                <rect key="frame" x="15" y="138" width="360" height="360"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="360" id="Cp5-Ee-7zv"/>
+                                    <constraint firstAttribute="width" constant="360" id="HaH-Qy-rFz"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProjectCell" id="MlR-EL-AX4">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="360" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MlR-EL-AX4" id="67L-ZH-gM4">
+                                            <rect key="frame" x="0.0" y="0.0" width="360" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Qop-bn-znL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IN7-ot-htR" firstAttribute="top" secondItem="Qop-bn-znL" secondAttribute="top" constant="50" id="OIG-6L-XD5"/>
+                            <constraint firstItem="IN7-ot-htR" firstAttribute="centerX" secondItem="EYg-8i-1af" secondAttribute="centerX" id="dNh-WC-yiq"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="All Projects" id="HS2-1x-ylm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="kQf-Xo-H6m">
+                            <connections>
+                                <action selector="addProjectPressed:" destination="wjK-kU-ARe" id="its-GU-fzX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="projectsTableView" destination="IN7-ot-htR" id="1aH-N5-Z9D"/>
+                        <segue destination="y2H-e7-xdH" kind="show" identifier="showProjectItemList" id="1T0-5e-65P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKI-aX-1tY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1911" y="-559"/>
+            <point key="canvasLocation" x="1910.7692307692307" y="-559.47867298578194"/>
         </scene>
         <!--Project Items-->
         <scene sceneID="4OM-nf-Ddw">
@@ -337,6 +376,9 @@
             <point key="canvasLocation" x="129" y="98"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="1T0-5e-65P"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

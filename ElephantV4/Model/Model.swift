@@ -53,7 +53,7 @@ class Model {
 //            Project(name: "None", completed: false, priority: 100000, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], placeholderCounter: 0, activePlaceholders: [], inactivePlaceholders: []),
 //            Project(name: "Piano", completed: false, priority: 3, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], placeholderCounter: 0, activePlaceholders: [], inactivePlaceholders: []),
 //            Project(name: "Cleaning", completed: false, priority: 3, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], placeholderCounter: 0, activePlaceholders: [], inactivePlaceholders: []),
-//            Project(name: "Wix", completed: false, priority: 3, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], placeholderCounter: 0, activePlaceholders: [], inactivePlaceholders: [])
+//            Project(name: "Wix", completed: false, priority: 3, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [])
 //        ]
         
         projectDictionary =
