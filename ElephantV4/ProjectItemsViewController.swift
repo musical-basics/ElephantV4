@@ -3,7 +3,7 @@ import UIKit
 class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
-    var selectedProject: String = ""
+    var selectedProject: Project = Project(name: "", completed: false, priority: 0, type: "", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [])
     var selectedObjective = Objective(name: "", cycle: false, completed: false, items: [], project: "")
     var selectedObjectiveIndex = 0
     
@@ -15,7 +15,7 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedProjectLabel.text = selectedProject
+        selectedProjectLabel.text = selectedProject.name
         
 //        selectedObjective = Objective(name: "", cycle: false, completed: false, items: [], project: "")
         
@@ -32,6 +32,42 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
 //    }
     
     
+    @IBAction func addObjectiveToProject(_ sender: UIBarButtonItem) {
+        var textField = UITextField()
+        let alert = UIAlertController(title: "Add Objective To Project", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add Objective", style: .default) { (action) in
+            
+            var project = model.projectDictionary[self.selectedProject.name]
+            let currentCount = project?.objectiveCounter
+            
+            let newObjectiveText = textField.text!
+            let newObjectiveToAdd = Objective(name: newObjectiveText, cycle: true, completed: false, items: [], project: self.selectedProject.name)
+            
+            project?.objectiveList.append(newObjectiveToAdd)
+            
+            model.projectDictionary[self.selectedProject.name] = project
+            model.saveItems()
+            self.projItemsTable.reloadData()
+        }
+        
+        alert.addAction(action)
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Enter Text for Item"
+            textField = alertTextField
+        }
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            print("Cancelled")
+        })
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+
+        
+        
+    }
     
     
     
@@ -40,7 +76,7 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
     
 //MARK: - TABLE VIEW METHODS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let objectiveListCount = model.projectDictionary[selectedProject]?.objectiveList.count
+        let objectiveListCount = model.projectDictionary[selectedProject.name]?.objectiveList.count
         return objectiveListCount!
     }
     
@@ -48,7 +84,7 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
         let cell = projItemsTable.dequeueReusableCell(withIdentifier: "ObjectiveIdentifier", for: indexPath) as! ObjectiveCell
         
         
-        let newList = model.projectDictionary[selectedProject]?.objectiveList
+        let newList = model.projectDictionary[selectedProject.name]?.objectiveList
         
         
 //        let projLookup = model.activeArray[indexPath.row].project
@@ -68,7 +104,7 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
         
         var itemsToShow = [item1Shown, item2Shown, item3Shown, item4Shown]
         
-        if let currentObjective = model.projectDictionary[selectedProject]?.objectiveList[safe: indexPath.row] {
+        if let currentObjective = model.projectDictionary[selectedProject.name]?.objectiveList[safe: indexPath.row] {
             objectiveShown = currentObjective.name
             
             var tempCounter = 0
@@ -155,7 +191,7 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
 //
         
         
-        selectedObjective = (model.projectDictionary[self.selectedProject]?.objectiveList[indexPath.row])!
+        selectedObjective = (model.projectDictionary[self.selectedProject.name]?.objectiveList[indexPath.row])!
         selectedObjectiveIndex = indexPath.row
         
         performSegue(withIdentifier: "ShowObjectiveItems", sender: nil)

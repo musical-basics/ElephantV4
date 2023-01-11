@@ -88,9 +88,9 @@ class Model {
         
         let noneArray =
         [
-            Item(title: "Call mom", project: "None", objective: "None", uniqueNum: 1, status: "Active"),
-            Item(title: "Surf internet", project: "None", objective: "None", uniqueNum: 2, status: "Active"),
-            Item(title: "Buy groceries", project: "None", objective: "None", uniqueNum: 3, status: "Active")
+            Item(title: "Call mom", project: "None", objective: "None", uniqueNum: 1, status: "Active")
+//            Item(title: "Surf internet", project: "None", objective: "None", uniqueNum: 2, status: "Active"),
+//            Item(title: "Buy groceries", project: "None", objective: "None", uniqueNum: 3, status: "Active")
         ]
         
         
@@ -102,8 +102,13 @@ class Model {
         
         let pianoObjective1 = Objective(name: "Finish New Dawn", cycle: true, completed: false, items: [pianoArray[0], pianoArray[1]], project: "Piano")
         let pianoObjective2 = Objective(name: "Finish HSLB", cycle: true, completed: false, items: [pianoArray[2], pianoArray[3]], project: "Piano")
-
         projectDictionary["Piano"]?.objectiveList.append(contentsOf: [pianoObjective1, pianoObjective2])
+        
+        let noneObjective1 = Objective(name: "None", cycle: false, completed: false, items: noneArray, project: "None")
+        projectDictionary["None"]?.objectiveList.append(contentsOf: [noneObjective1])
+        
+        let wixObjective1 = Objective(name: "Transition Website", cycle: true, completed: false, items: wixArray, project: "Wix")
+        projectDictionary["Wix"]?.objectiveList.append(contentsOf: [wixObjective1])
         
     }
     

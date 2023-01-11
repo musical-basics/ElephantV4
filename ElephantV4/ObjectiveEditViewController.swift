@@ -26,13 +26,17 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
         
 //        objectiveTableView.register(UINib(nibName: "ObjectiveItemCell", bundle: nil), forCellReuseIdentifier: "ItemReusableCell")
         
-        objectiveLabel.text = selectedObjName
+        objectiveLabel.text = "Selected Objective: \(selectedObj.name)"
+        print(selectedObj.name)
+        objectiveLabel.numberOfLines = 0;
+        objectiveLabel.lineBreakMode = .byWordWrapping;
         
-        print(selectedObj.items)
-        print(selectedObj.items.count)
+
      
         self.objectiveTableView.reloadData()
     }
+    
+    
     
 
     @IBAction func addItemToObjective(_ sender: Any) {
@@ -95,8 +99,49 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
         } else {
             cell.textLabel?.textColor = UIColor.red
         }
+        
+        cell.textLabel?.numberOfLines = 0;
+        cell.textLabel?.lineBreakMode = .byWordWrapping;
         return cell
 
     }
-
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        var selectedItem = selectedObj.items[indexPath.row]
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Edit Item", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Edit Item", style: .default) { (action) in
+            selectedItem.title = textField.text!
+            
+            self.selectedObj.items[indexPath.row] = selectedItem
+            
+            model.projectDictionary[self.selectedObj.project]?.objectiveList[self.selectedObjIndex] = self.selectedObj
+            model.saveItems()
+            self.objectiveTableView.reloadData()
+        }
+        
+        alert.addAction(action)
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.text = selectedItem.title
+            textField = alertTextField
+        }
+        
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            print("Cancelled")
+        })
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+        
+        
+        
+        
+    }
 }

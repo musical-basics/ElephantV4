@@ -36,6 +36,101 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //MARK: - 1st Button Row
     
     
+    @IBAction func addItemPressed(_ sender: UIButton) {
+        var textField = UITextField()
+        let alert = UIAlertController(title: "Add Item With None Project", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+            
+            let newItemName = textField.text!
+            let currentNoneCounter = model.projectDictionary["None"]?.itemCounter
+            let newItemToAdd = Item(title: newItemName, project: "None", objective: "None", uniqueNum: currentNoneCounter!, status: "Inactive")
+            
+            model.projectDictionary["None"]?.itemCounter = currentNoneCounter!+1
+            model.projectDictionary["None"]?.inactiveItems.append(newItemToAdd)
+            model.projectDictionary["None"]?.objectiveList[0].items.append(newItemToAdd)
+            
+            model.saveItems()
+            self.itemTableView.reloadData()
+        }
+        
+        alert.addAction(action)
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Enter Text for Item"
+            textField = alertTextField
+        }
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            print("Cancelled")
+        })
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+
+
+    }
+    
+    @IBAction func editItemPressed(_ sender: UIButton) {
+        
+        var currentPlace = model.activeArray[safe: currentIndx]
+        
+        let projLookup = currentPlace!.project
+        let numIndex = currentPlace!.indx - 1
+        
+        var textField = UITextField()
+        if var currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
+            let alert = UIAlertController(title: "Edit Item", message: "", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Edit Item", style: .default) { (action) in
+                currentItem.title = textField.text!
+                
+                
+                model.projectDictionary[currentItem.project]?.activeItems[numIndex] = currentItem
+                model.projectDictionary[currentItem.project]?.objectiveList[0].items[numIndex] = currentItem
+                model.saveItems()
+                self.itemTableView.reloadData()
+            }
+            
+            alert.addAction(action)
+            
+            alert.addTextField { (alertTextField) in
+                alertTextField.text = currentItem.title
+                textField = alertTextField
+            }
+
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+                print("Cancelled")
+            })
+            alert.addAction(cancelAction)
+            
+            present(alert, animated: true, completion: nil)
+
+        }
+        
+//        var itemShown = ""
+//        var objectiveShown = ""
+//        if let currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
+//            itemShown = currentItem.title
+//            objectiveShown = currentItem.objective
+//        } else {
+//            itemShown = currentPlace.title
+//            objectiveShown = ""
+//        }
+//
+        
+        
+                
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
     @IBAction func completeItemPressed(_ sender: UIButton) {
         let tempNum = currentSelection.indx
         model.completeItem(index: tempNum)
@@ -57,17 +152,50 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
 //MARK: - 2nd Button Row
     
+    
+    
+    @IBAction func showMorePressed(_ sender: UIButton) {
+        var textField = UITextField()
+        let alert = UIAlertController(title: "Choose Number Of Items Shown", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Choose Number Of Items Shown", style: .default) { (action) in
+            let numItemsSelected = textField.text!
+            let intNumItemsSelected = Int(numItemsSelected)
+            self.numItemsShown = intNumItemsSelected!
+            self.itemTableView.reloadData()
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Enter Integer"
+            textField = alertTextField
+        }
+        alert.addAction(action)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            print("Cancelled")
+        })
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+        
+        
+        
+    }
+    
+    
+    
+    
+    
     @IBAction func showItemProjectPressed(_ sender: UIButton) {
         
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let projSelected = currentSelection.project
+        let projSelected = model.projectDictionary[currentSelection.project]
+        
+        
         
         if (segue.identifier == "showProjectOfItem") {
             let viewController = segue.destination as? ProjectItemsViewController
-            viewController?.selectedProject = projSelected
+            viewController?.selectedProject = projSelected!
         }
     }
     
@@ -77,41 +205,71 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //MARK: - TABLE VIEW METHODS
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.activeArray.count
+        return numItemsShown
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = itemTableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! ItemCell
         
-        let projLookup = model.activeArray[indexPath.row].project
-        let numIndex = model.activeArray[indexPath.row].indx - 1
         
-        var itemShown = ""
-        if let currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
-            itemShown = currentItem.title
+        if let currentItem = model.activeArray[safe: indexPath.row] {
+            let projLookup = currentItem.project
+            let numIndex = currentItem.indx - 1
+            
+            var itemShown = ""
+            var objectiveShown = ""
+            if let currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
+                itemShown = currentItem.title
+                objectiveShown = currentItem.objective
+            } else {
+                itemShown = currentItem.title
+                objectiveShown = ""
+            }
+            cell.titleLabel.text = itemShown
+    //        cell.titleLabel.text = model.activeArray[indexPath.row].title
+            cell.titleLabel?.numberOfLines = 0;
+            cell.titleLabel?.lineBreakMode = .byWordWrapping;
+            
+            cell.objectiveLabel.text = "Objective: \(objectiveShown)"
+            cell.objectiveLabel?.numberOfLines = 0;
+            cell.objectiveLabel?.lineBreakMode = .byWordWrapping;
+
+            cell.projLabel.text = "Project: \(currentItem.project)"
+            cell.projLabel?.numberOfLines = 0;
+            cell.projLabel?.lineBreakMode = .byWordWrapping;
         } else {
-            itemShown = model.activeArray[indexPath.row].title
+            cell.titleLabel.text = "NO MORE"
+            cell.titleLabel?.numberOfLines = 0;
+            cell.titleLabel?.lineBreakMode = .byWordWrapping;
+            
+            cell.objectiveLabel.text = "NO MORE"
+            cell.objectiveLabel?.numberOfLines = 0;
+            cell.objectiveLabel?.lineBreakMode = .byWordWrapping;
+
+            cell.projLabel.text = "NO MORE"
+            cell.projLabel?.numberOfLines = 0;
+            cell.projLabel?.lineBreakMode = .byWordWrapping;
         }
+        
+//        let currentItem = model.activeArray[indexPath.row]
+        
+
         
 //        if let currentItem = model.projectDictionary[projLookup]?.activeItems[0] {
 //            cell.titleLabel.text = currentItem.title
 //        }
         
-        cell.titleLabel.text = itemShown
-//        cell.titleLabel.text = model.activeArray[indexPath.row].title
-        cell.titleLabel?.numberOfLines = 0;
-        cell.titleLabel?.lineBreakMode = .byWordWrapping;
 
-        cell.projLabel.text = model.activeArray[indexPath.row].project
-        cell.projLabel?.numberOfLines = 0;
-        cell.projLabel?.lineBreakMode = .byWordWrapping;
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentSelection = model.activeArray[indexPath.row]
-        currentIndx = indexPath.row
+        
+        if let currentSelect = model.activeArray[safe: indexPath.row] {
+            currentSelection = currentSelect
+            currentIndx = indexPath.row
+        }
     }
     
     
@@ -152,10 +310,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         timeLabel.text = "Time Spent: \(hoursString):\(minutesString):\(secondsString)"
     }
-    
-    
-
 }
+
+
+
+
+
+
+
+
 
 extension Collection {
     /// Returns the element at the specified index if it is within bounds, otherwise nil.
