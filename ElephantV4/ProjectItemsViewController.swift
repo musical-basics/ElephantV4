@@ -4,6 +4,8 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
 
     
     var selectedProject: String = ""
+    var selectedObjective = Objective(name: "", cycle: false, completed: false, items: [], project: "")
+    var selectedObjectiveIndex = 0
     
     @IBOutlet weak var projItemsTable: UITableView!
     
@@ -15,6 +17,7 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         selectedProjectLabel.text = selectedProject
         
+//        selectedObjective = Objective(name: "", cycle: false, completed: false, items: [], project: "")
         
         projItemsTable.delegate = self
         projItemsTable.dataSource = self
@@ -27,6 +30,11 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
 //        selectedProjectLabel.text = selectedProject
 //
 //    }
+    
+    
+    
+    
+    
     
     
     
@@ -101,60 +109,68 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        var selectedObjective = model.projectDictionary[self.selectedProject]?.objectiveList[safe: indexPath.row]
-        
-//        if let checkObj = model.projectDictionary[self.selectedProject]?.objectiveList[safe: indexPath.row] {
-//            selectedObjective = checkObj
+//        var selectedObjective = model.projectDictionary[self.selectedProject]?.objectiveList[safe: indexPath.row]
+//
+//
+//
+//
+//
+//        var textField = UITextField()
+//        var textField2 = UITextField()
+//        let alert = UIAlertController(title: "Edit Objective", message: "", preferredStyle: .alert)
+//        let action = UIAlertAction(title: "Edit Objective", style: .default) { (action) in
+//            selectedObjective!.name = textField.text!
+//            selectedObjective!.items[0].title = textField2.text!
+//            model.projectDictionary[self.selectedProject]?.objectiveList[indexPath.row] = selectedObjective!
+//            model.saveItems()
+//            self.projItemsTable.reloadData()
 //        }
+//
+//        alert.addAction(action)
+//
+//        alert.addTextField { (alertTextField) in
+//            alertTextField.placeholder = model.projectDictionary[self.selectedProject]?.objectiveList[indexPath.row].name
+//            alertTextField.text = model.projectDictionary[self.selectedProject]?.objectiveList[indexPath.row].name
+//            textField = alertTextField
+//        }
+//
+//
+//
+//        alert.addTextField { (alertTextField) in
+//            if var item1 = selectedObjective!.items[safe: 0] {
+//                alertTextField.text = selectedObjective!.items[0].title
+//                textField2 = alertTextField
+//            }
+//
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+//            print("Cancelled")
+//        })
+//        alert.addAction(cancelAction)
+//
+//        present(alert, animated: true, completion: nil)
+//
+//
+//
         
         
+        selectedObjective = (model.projectDictionary[self.selectedProject]?.objectiveList[indexPath.row])!
+        selectedObjectiveIndex = indexPath.row
         
+        performSegue(withIdentifier: "ShowObjectiveItems", sender: nil)
         
-        
-        var textField = UITextField()
-        var textField2 = UITextField()
-        let alert = UIAlertController(title: "Edit Objective", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Edit Objective", style: .default) { (action) in
-            selectedObjective!.name = textField.text!
-            selectedObjective!.items[0].title = textField2.text!
-            model.projectDictionary[self.selectedProject]?.objectiveList[indexPath.row] = selectedObjective!
-            model.saveItems()
-            self.projItemsTable.reloadData()
-        }
-        
-        alert.addAction(action)
-        
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = model.projectDictionary[self.selectedProject]?.objectiveList[indexPath.row].name
-            alertTextField.text = model.projectDictionary[self.selectedProject]?.objectiveList[indexPath.row].name
-            textField = alertTextField
-        }
-        
-        
-        
-        alert.addTextField { (alertTextField) in
-            if var item1 = selectedObjective!.items[safe: 0] {
-                alertTextField.text = selectedObjective!.items[0].title
-                textField2 = alertTextField
-            }
-            
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
-            print("Cancelled")
-        })
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true, completion: nil)
-
-        
-        
-        
-        
-//        currentSelection = model.activeArray[indexPath.row]
-//        currentIndx = indexPath.row
     }
     
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShowObjectiveItems") {
+            let viewController = segue.destination as? ObjectiveEditViewController
+            viewController?.selectedObjName = selectedObjective.name
+            viewController?.selectedObjIndex = selectedObjectiveIndex
+            viewController?.selectedObj = selectedObjective
+        }
+    }
 
 }

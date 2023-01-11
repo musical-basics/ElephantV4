@@ -28,6 +28,9 @@
 		44C762B6296D8A12006F762E /* ProjectItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C762B5296D8A12006F762E /* ProjectItemsViewController.swift */; };
 		44C762B9296D8F36006F762E /* ObjectiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C762B7296D8F36006F762E /* ObjectiveCell.swift */; };
 		44C762BA296D8F36006F762E /* ObjectiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44C762B8296D8F36006F762E /* ObjectiveCell.xib */; };
+		44C762BC296E8C58006F762E /* ObjectiveEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C762BB296E8C58006F762E /* ObjectiveEditViewController.swift */; };
+		44C762BF296E9471006F762E /* ObjectiveItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C762BD296E9471006F762E /* ObjectiveItemCell.swift */; };
+		44C762C0296E9471006F762E /* ObjectiveItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44C762BE296E9471006F762E /* ObjectiveItemCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		44C762B5296D8A12006F762E /* ProjectItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectItemsViewController.swift; sourceTree = "<group>"; };
 		44C762B7296D8F36006F762E /* ObjectiveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveCell.swift; sourceTree = "<group>"; };
 		44C762B8296D8F36006F762E /* ObjectiveCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ObjectiveCell.xib; sourceTree = "<group>"; };
+		44C762BB296E8C58006F762E /* ObjectiveEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveEditViewController.swift; sourceTree = "<group>"; };
+		44C762BD296E9471006F762E /* ObjectiveItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveItemCell.swift; sourceTree = "<group>"; };
+		44C762BE296E9471006F762E /* ObjectiveItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ObjectiveItemCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,9 @@
 				44C76260296D44CC006F762E /* SceneDelegate.swift */,
 				44C76262296D44CC006F762E /* ViewController.swift */,
 				44C762B5296D8A12006F762E /* ProjectItemsViewController.swift */,
+				44C762BB296E8C58006F762E /* ObjectiveEditViewController.swift */,
+				44C762BD296E9471006F762E /* ObjectiveItemCell.swift */,
+				44C762BE296E9471006F762E /* ObjectiveItemCell.xib */,
 				44C7629B296D4F7B006F762E /* ItemCell.swift */,
 				44C7629C296D4F7B006F762E /* ItemCell.xib */,
 				44C762B7296D8F36006F762E /* ObjectiveCell.swift */,
@@ -275,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44C762C0296E9471006F762E /* ObjectiveItemCell.xib in Resources */,
 				44C7629E296D4F7B006F762E /* ItemCell.xib in Resources */,
 				44C7626E296D44CC006F762E /* LaunchScreen.storyboard in Resources */,
 				44C7626B296D44CC006F762E /* Assets.xcassets in Resources */,
@@ -307,11 +317,13 @@
 				44C76292296D46FC006F762E /* Item.swift in Sources */,
 				44C762A0296D50FA006F762E /* Objective.swift in Sources */,
 				44C762B9296D8F36006F762E /* ObjectiveCell.swift in Sources */,
+				44C762BF296E9471006F762E /* ObjectiveItemCell.swift in Sources */,
 				44C76263296D44CC006F762E /* ViewController.swift in Sources */,
 				44C7625F296D44CC006F762E /* AppDelegate.swift in Sources */,
 				44C76294296D4761006F762E /* Model.swift in Sources */,
 				44C7629D296D4F7B006F762E /* ItemCell.swift in Sources */,
 				44C762B6296D8A12006F762E /* ProjectItemsViewController.swift in Sources */,
+				44C762BC296E8C58006F762E /* ObjectiveEditViewController.swift in Sources */,
 				44C76269296D44CC006F762E /* ElephantV4.xcdatamodeld in Sources */,
 				44C76261296D44CC006F762E /* SceneDelegate.swift in Sources */,
 				44C76296296D477F006F762E /* CalendarHelper.swift in Sources */,
