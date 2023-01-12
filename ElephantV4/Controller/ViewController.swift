@@ -205,19 +205,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = itemTableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! ItemCell
         
         
-        if let currentItem = model.activeArray[safe: indexPath.row] {
-            let projLookup = currentItem.project
+        if let currentPlaceholder = model.activeArray[safe: indexPath.row] {
+            let projLookup = currentPlaceholder.project
 //            let numIndex = currentItem.indx
             
             var itemShown = ""
             var objectiveShown = ""
-            if let currentItem = model.projectDictionary[projLookup]?.activeItems[safe: indexPath.row] {
+            
+            
+//            if let currentItem = model.projectDictionary[projLookup]?.activeItems[safe: currentPlaceholder.indx] {
+            if let currentItem = model.projectDictionary[projLookup]?.objectiveList[0].items[safe: currentPlaceholder.indx]{
+                
                 itemShown = currentItem.title
                 objectiveShown = currentItem.objective
             } else {
-                itemShown = currentItem.title
+                itemShown = currentPlaceholder.title
                 objectiveShown = ""
             }
+            
+            
+//            itemShown = currentPlaceholder.title + String(currentPlaceholder.indx)
+            
             cell.titleLabel.text = itemShown
     //        cell.titleLabel.text = model.activeArray[indexPath.row].title
             cell.titleLabel?.numberOfLines = 0;
@@ -227,7 +235,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.objectiveLabel?.numberOfLines = 0;
             cell.objectiveLabel?.lineBreakMode = .byWordWrapping;
 
-            cell.projLabel.text = "Project: \(currentItem.project)"
+            cell.projLabel.text = "Project: \(currentPlaceholder.project)"
             cell.projLabel?.numberOfLines = 0;
             cell.projLabel?.lineBreakMode = .byWordWrapping;
         } else {

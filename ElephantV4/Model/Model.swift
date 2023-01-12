@@ -26,15 +26,17 @@ class Model {
 
         activeArray =
         [
-            Placeholder(title: "Piano Placeholder 1", timeDone: Date(), project: "Piano", indx: 0, status: "Active"),
+//            Placeholder(title: "Piano Placeholder 1", timeDone: Date(), project: "Piano", indx: 0, status: "Active"),
 //            Placeholder(title: "Wix Placeholder 1", timeDone: Date(), project: "Wix", indx: 1, status: "Active"),
-            Placeholder(title: "Piano Placeholder 2", timeDone: Date(), project: "Piano", indx: 1, status: "Active"),
+//            Placeholder(title: "Piano Placeholder 2", timeDone: Date(), project: "Piano", indx: 1, status: "Active"),
 //            Placeholder(title: "Wix Placeholder 2", timeDone: Date(), project: "Wix", indx: 2, status: "Active"),
-            Placeholder(title: "Piano Placeholder 3", timeDone: Date(), project: "Piano", indx: 2, status: "Active"),
+//            Placeholder(title: "Piano Placeholder 3", timeDone: Date(), project: "Piano", indx: 2, status: "Active"),
 //            Placeholder(title: "Cleaning Placeholder 1", timeDone: Date(), project: "Cleaning", indx: 1, status: "Active"),
 //            Placeholder(title: "None Placeholder 2", timeDone: Date(), project: "None", indx: 2, status: "Active"),
-            Placeholder(title: "Piano Placeholder 4", timeDone: Date(), project: "Piano", indx: 3, status: "Active"),
-//            Placeholder(title: "None Placeholder 3", timeDone: Date(), project: "None", indx: 9, status: "Active")
+//            Placeholder(title: "Piano Placeholder 4", timeDone: Date(), project: "Piano", indx: 3, status: "Active"),
+//            Placeholder(title: "None Placeholder 3", timeDone: Date(), project: "None", indx: 9, status: "Active"),
+//            Placeholder(title: "Cleaning Placeholder 2", timeDone: Date(), project: "Cleaning", indx: 2, status: "Active"),
+//            Placeholder(title: "Cleaning Placeholder 3", timeDone: Date(), project: "Cleaning", indx: 3, status: "Active")
         ]
         
         inactiveArray =
@@ -56,63 +58,68 @@ class Model {
 //            Project(name: "Wix", completed: false, priority: 3, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [])
 //        ]
         
-        projectDictionary =
+        var tempProjectDictionary =
         [
-            "None" : Project(name: "None", completed: false, priority: 100000, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 1),
-            "Piano" : Project(name: "Piano", completed: false, priority: 3, type: "Project", itemCounter: 4, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 4),
-            "Cleaning" : Project(name: "Cleaning", completed: false, priority: 3, type: "Project", itemCounter: 3, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 1),
-            "Wix": Project(name: "Wix", completed: false, priority: 3, type: "Project", itemCounter: 3, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 1)
+            "None" : Project(name: "None", completed: false, priority: 3, type: "Project", itemCounter: 3, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0),
+            "Piano" : Project(name: "Piano", completed: false, priority: 3, type: "Project", itemCounter: 4, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0),
+            "Cleaning" : Project(name: "Cleaning", completed: false, priority: 3, type: "Project", itemCounter: 3, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0),
+            "Wix": Project(name: "Wix", completed: false, priority: 3, type: "Project", itemCounter: 3, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0)
         ]
         
         let wixArray =
         [
-            Item(title: "Work on website", project: "Wix", objective: "Old Website", uniqueNum: 1, status: "Active"),
-            Item(title: "Shopify work", project: "Wix", objective: "Old Website", uniqueNum: 2, status: "Active"),
-            Item(title: "Fix billing", project: "Wix", objective: "New Website", uniqueNum: 3, status: "Active")
+            Item(title: "Work on website", project: "Wix", objective: "Old Website", uniqueNum: 0, status: "Active"),
+            Item(title: "Shopify work", project: "Wix", objective: "Old Website", uniqueNum: 1, status: "Active"),
+            Item(title: "Fix billing", project: "Wix", objective: "New Website", uniqueNum: 2, status: "Active")
         ]
         
         let pianoArray =
         [
-            Item(title: "Practice new dawn", project: "Piano", objective: "Finish New Dawn", uniqueNum: 1, status: "Active"),
-            Item(title: "Record New Dawn", project: "Piano", objective: "Finish New Dawn", uniqueNum: 2, status: "Active"),
-            Item(title: "Practice HSLB", project: "Piano", objective: "Finish HSLB", uniqueNum: 3, status: "Active"),
-            Item(title: "Record HSLB", project: "Piano", objective: "Finish HSLB", uniqueNum: 4, status: "Active")
+            Item(title: "Practice new dawn", project: "Piano", objective: "Finish New Dawn", uniqueNum: 0, status: "Active"),
+            Item(title: "Record New Dawn", project: "Piano", objective: "Finish New Dawn", uniqueNum: 1, status: "Active"),
+            Item(title: "Practice HSLB", project: "Piano", objective: "Finish HSLB", uniqueNum: 2, status: "Active"),
+            Item(title: "Record HSLB", project: "Piano", objective: "Finish HSLB", uniqueNum: 3, status: "Active")
         ]
         
         let cleaningArray =
         [
-            Item(title: "Clean bathroom", project: "Cleaning", objective: "House Cleaning", uniqueNum: 1, status: "Active"),
-            Item(title: "Clean bedroom", project: "Cleaning", objective: "House Cleaning", uniqueNum: 2, status: "Active"),
-            Item(title: "Clean closet", project: "Cleaning", objective: "House Cleaning", uniqueNum: 3, status: "Active")
+            Item(title: "Clean bathroom", project: "Cleaning", objective: "House Cleaning", uniqueNum: 0, status: "Active"),
+            Item(title: "Clean bedroom", project: "Cleaning", objective: "House Cleaning", uniqueNum: 1, status: "Active"),
+            Item(title: "Clean closet", project: "Cleaning", objective: "House Cleaning", uniqueNum: 2, status: "Active")
         ]
         
         let noneArray =
         [
-            Item(title: "Call mom", project: "None", objective: "None", uniqueNum: 1, status: "Active"),
-            Item(title: "Surf internet", project: "None", objective: "None", uniqueNum: 2, status: "Active"),
-            Item(title: "Buy groceries", project: "None", objective: "None", uniqueNum: 3, status: "Active")
+            Item(title: "Call mom", project: "None", objective: "None", uniqueNum: 0, status: "Active"),
+            Item(title: "Surf internet", project: "None", objective: "None", uniqueNum: 1, status: "Active"),
+            Item(title: "Buy groceries", project: "None", objective: "None", uniqueNum: 2, status: "Active")
         ]
         
         
-        projectDictionary["Wix"]?.activeItems.append(contentsOf: wixArray)
-        projectDictionary["Piano"]?.activeItems.append(contentsOf: pianoArray)
-        projectDictionary["Cleaning"]?.activeItems.append(contentsOf: cleaningArray)
-        projectDictionary["None"]?.activeItems.append(contentsOf: noneArray)
+        tempProjectDictionary["Wix"]?.activeItems.append(contentsOf: wixArray)
+        tempProjectDictionary["Piano"]?.activeItems.append(contentsOf: pianoArray)
+        tempProjectDictionary["Cleaning"]?.activeItems.append(contentsOf: cleaningArray)
+        tempProjectDictionary["None"]?.activeItems.append(contentsOf: noneArray)
         
         
         let pianoObjective1 = Objective(name: "Finish New Dawn", cycle: true, completed: false, items: [pianoArray[0], pianoArray[1]], project: "Piano")
         let pianoObjective2 = Objective(name: "Finish HSLB", cycle: true, completed: false, items: [pianoArray[2], pianoArray[3]], project: "Piano")
-        projectDictionary["Piano"]?.objectiveList.append(contentsOf: [pianoObjective1, pianoObjective2])
+        tempProjectDictionary["Piano"]?.objectiveList.append(contentsOf: [pianoObjective1, pianoObjective2])
         
         let noneObjective1 = Objective(name: "None", cycle: true, completed: false, items: noneArray, project: "None")
-        projectDictionary["None"]?.objectiveList.append(contentsOf: [noneObjective1])
+        tempProjectDictionary["None"]?.objectiveList.append(contentsOf: [noneObjective1])
         
         let wixObjective1 = Objective(name: "Old Website", cycle: true, completed: false, items: [wixArray[0], wixArray[1]], project: "Wix")
         let wixObjective2 = Objective(name: "New Website", cycle: true, completed: false, items: [wixArray[2]], project: "Wix")
-        projectDictionary["Wix"]?.objectiveList.append(contentsOf: [wixObjective1, wixObjective2])
+        tempProjectDictionary["Wix"]?.objectiveList.append(contentsOf: [wixObjective1, wixObjective2])
         
         let cleanObjective1 = Objective(name: "House Cleaning", cycle: true, completed: false, items: cleaningArray, project: "Cleaning")
-        projectDictionary["Cleaning"]?.objectiveList.append(contentsOf: [cleanObjective1])
+        tempProjectDictionary["Cleaning"]?.objectiveList.append(contentsOf: [cleanObjective1])
+        
+        addProject(project: tempProjectDictionary["None"]!)
+        addProject(project: tempProjectDictionary["Piano"]!)
+        
+        
         
     }
     
@@ -132,16 +139,18 @@ class Model {
         
         projectDictionary[project.name] = project
 //        projectArray.append(project)
-        var placeholderCounter = 1
+        var placeholderCounter = 0
         var placeholderInsertArray: [Placeholder] = []
         
         
-        for _ in 1...project.priority {
+        for _ in 0...(project.priority-1) {
             let newPlaceholder = Placeholder(title: "\(project.name) Placeholder", project: project.name, indx: placeholderCounter, status: "Active")
             placeholderCounter += 1
             placeholderInsertArray.append(newPlaceholder)
         }
         
+//        print(placeholderInsertArray)
+        print(placeholderCounter)
         projectDictionary[project.name]?.placeholderCounter = placeholderCounter
         let inactiveItems = insertItems(itemsToInsert: placeholderInsertArray, priority: project.priority)
         
@@ -166,7 +175,7 @@ class Model {
                     
                     activeArray.insert(itm, at: insertLevel)
                     counter += 1
-                    print(activeArray)
+//                    print(activeArray)
                 } else {
                     print("Item List needs more items")
 //                    let itemDiff = itemsToInsert.count - counter
@@ -179,6 +188,7 @@ class Model {
             
         }
         
+//        print(inactivatedItems)
         return inactivatedItems
     }
 
@@ -316,11 +326,13 @@ class Model {
         //handle actual items
         var currentProject = projectDictionary[currentProjectOfItem]!
 //        let actualItemIndex = currentProject.activeItems.firstIndex { $0.uniqueNum == placeholderIndex }
-        let actualItemIndex = index
+        let activeItemIndex = 0
+        
+        var currentObjective = currentProject.objectiveList[0].name
         
         
-        var currentObjective = currentProject.activeItems[actualItemIndex].objective
-        var currentItem = currentProject.activeItems[actualItemIndex]
+//        var currentObjective = currentProject.activeItems[actualItemIndex].objective
+        var currentItem = currentProject.activeItems[activeItemIndex]
         
 //        print(currentItem)
 //        print(currentProject.activeItems)
@@ -361,11 +373,11 @@ class Model {
             
             //complete existing item within both the objective and active list
 //            print(actualItemIndex)
-            currentProject.activeItems[actualItemIndex].status = "Done"
+            currentProject.activeItems[activeItemIndex].status = "Done"
 //            print(currentProject.activeItems[actualItemIndex!].title)
             
             //remove item from active list
-            currentProject.activeItems.remove(at: actualItemIndex)
+            currentProject.activeItems.remove(at: activeItemIndex)
             
             //find item's index in objective list
 
@@ -376,16 +388,16 @@ class Model {
             
             
             //replace entire project
-            projectDictionary[currentProjectOfItem] = currentProject
+            
             
         } else {
-            projectDictionary[currentProjectOfItem]!.activeItems[actualItemIndex].status = "Done"
+            projectDictionary[currentProjectOfItem]!.activeItems[activeItemIndex].status = "Done"
             //find item's index in objective list
             let indexOfItemInObjectiveList = currentProject.objectiveList[indexOfObjective!].items.firstIndex { $0.uniqueNum == currentItem.uniqueNum }
             projectDictionary[currentProjectOfItem]!.objectiveList[indexOfObjective!].items[indexOfItemInObjectiveList!].status = "Done"
         }
         
-        
+        projectDictionary[currentProjectOfItem] = currentProject
 
     }
 
