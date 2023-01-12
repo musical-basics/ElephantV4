@@ -8,7 +8,7 @@ class ProjectsViewController: UIViewController, UITableViewDataSource, UITableVi
 //    var selectedProject: String = ""
     var keysArray = Array(model.projectDictionary.keys)
     
-    var selectedProject = Project(name: "", completed: false, priority: 0, type: "", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [])
+    var selectedProject = Project(name: "", completed: false, priority: 0, type: "", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0)
     var selectedProjectIndex = 0
     
     override func viewDidLoad() {
@@ -32,11 +32,11 @@ class ProjectsViewController: UIViewController, UITableViewDataSource, UITableVi
 
             var projectName = textField.text!
             var projectPriority = textField2.text!
-            var newProject = Project(name: projectName, completed: false, priority: Int(projectPriority)!, type: "Spiral", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [])
+            var newProject = Project(name: projectName, completed: false, priority: Int(projectPriority)!, type: "Spiral", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0)
 
 
             
-            model.projectDictionary[newProject.name] = newProject
+            
             
 //            model.priorityDeclaration(project: newProject)
             model.addProject(project: newProject)

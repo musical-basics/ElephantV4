@@ -3,7 +3,7 @@ import UIKit
 class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
-    var selectedProject: Project = Project(name: "", completed: false, priority: 0, type: "", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [])
+    var selectedProject: Project = Project(name: "", completed: false, priority: 0, type: "", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0)
     var selectedObjective = Objective(name: "", cycle: false, completed: false, items: [], project: "")
     var selectedObjectiveIndex = 0
     
@@ -84,7 +84,7 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
         let cell = projItemsTable.dequeueReusableCell(withIdentifier: "ObjectiveIdentifier", for: indexPath) as! ObjectiveCell
         
         
-        let newList = model.projectDictionary[selectedProject.name]?.objectiveList
+//        let newList = model.projectDictionary[selectedProject.name]?.objectiveList
         
         
 //        let projLookup = model.activeArray[indexPath.row].project
@@ -97,49 +97,107 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
 //            itemShown = model.activeArray[indexPath.row].title
 //        }
 
-        var item1Shown = ""
-        var item2Shown = ""
-        var item3Shown = ""
-        var item4Shown = ""
-        
-        var itemsToShow = [item1Shown, item2Shown, item3Shown, item4Shown]
-        
-        if let currentObjective = model.projectDictionary[selectedProject.name]?.objectiveList[safe: indexPath.row] {
-            objectiveShown = currentObjective.name
-            
-            var tempCounter = 0
-            for indx in itemsToShow {
-                if let itemShown = currentObjective.items[safe: tempCounter] {
-                    itemsToShow[tempCounter] = currentObjective.items[tempCounter].title
-                } else {
-                    itemsToShow[tempCounter] = ""
-                }
-                tempCounter += 1
-            }
-            
-        } else {
-            objectiveShown = ""
-        }
         
         cell.titleLabel.text = "Objective: \(objectiveShown)"
         
-        cell.item1Label.text = itemsToShow[0]
-        cell.item1Label?.numberOfLines = 0;
-        cell.item1Label?.lineBreakMode = .byWordWrapping;
+        
+        if let currentObjective = model.projectDictionary[selectedProject.name]?.objectiveList[safe: indexPath.row] {
+            
+            objectiveShown = currentObjective.name
 
-        cell.item2Label.text = itemsToShow[1]
-        cell.item2Label?.numberOfLines = 0;
-        cell.item2Label?.lineBreakMode = .byWordWrapping;
+            if let item1 = currentObjective.items[safe: 0] {
+                cell.item1Label.text = item1.title
+                cell.item1Label?.numberOfLines = 0;
+                cell.item1Label?.lineBreakMode = .byWordWrapping;
+                cell.item1Label?.textColor = returnColor(item: item1)
+            } else {
+                cell.item1Label.text = ""
+                cell.item1Label?.numberOfLines = 0;
+                cell.item1Label?.lineBreakMode = .byWordWrapping;
+                cell.item1Label?.textColor = UIColor.black
+            }
+            
+            if let item2 = currentObjective.items[safe: 1] {
+                cell.item2Label.text = item2.title
+                cell.item2Label?.numberOfLines = 0;
+                cell.item2Label?.lineBreakMode = .byWordWrapping;
+                cell.item2Label?.textColor = returnColor(item: item2)
+            } else {
+                cell.item2Label.text = ""
+                cell.item2Label?.numberOfLines = 0;
+                cell.item2Label?.lineBreakMode = .byWordWrapping;
+                cell.item2Label?.textColor = UIColor.black
+            }
+            
+            if let item3 = currentObjective.items[safe: 2] {
+                cell.item3Label.text = item3.title
+                cell.item3Label?.numberOfLines = 0;
+                cell.item3Label?.lineBreakMode = .byWordWrapping;
+                cell.item3Label?.textColor = returnColor(item: item3)
+            } else {
+                cell.item3Label.text = ""
+                cell.item3Label?.numberOfLines = 0;
+                cell.item3Label?.lineBreakMode = .byWordWrapping;
+                cell.item3Label?.textColor = UIColor.black
+            }
+            
+            if let item4 = currentObjective.items[safe: 3] {
+                cell.item4Label.text = item4.title
+                cell.item4Label?.numberOfLines = 0;
+                cell.item4Label?.lineBreakMode = .byWordWrapping;
+                cell.item4Label?.textColor = returnColor(item: item4)
+            } else {
+                cell.item4Label.text = ""
+                cell.item4Label?.numberOfLines = 0;
+                cell.item4Label?.lineBreakMode = .byWordWrapping;
+                cell.item4Label?.textColor = UIColor.black
+            }
+        } else {
+            objectiveShown = ""
+        }
+            
+            
+            
+            
+//
+//            var tempCounter = 0
+//            for itm in currentObjective.items {
+//
+//            }
+//            for indx in itemsToShow {
+//                if let itemShown = currentObjective.items[safe: tempCounter] {
+//                    itemsToShow.append(currentObjective.items[tempCounter])
+//                } else {
+//                    itemsToShow[tempCounter] = ""
+//                }
+//                tempCounter += 1
+//            }
+            
         
-        cell.item3Label.text = itemsToShow[2]
-        cell.item3Label?.numberOfLines = 0;
-        cell.item3Label?.lineBreakMode = .byWordWrapping;
+
         
-        cell.item4Label.text = itemsToShow[3]
-        cell.item4Label?.numberOfLines = 0;
-        cell.item4Label?.lineBreakMode = .byWordWrapping;
+        
+        
+        
         
         return cell
+    }
+    
+    func returnColor(item: Item) -> UIColor {
+        let statusOfItem = item.status
+        var colorToReturn = UIColor.black
+        switch statusOfItem {
+        case "Active":
+            colorToReturn = UIColor.black
+        case "Inact":
+            colorToReturn = UIColor.red
+        case "Done":
+            colorToReturn = UIColor.green
+        default:
+            colorToReturn = UIColor.black
+        }
+        
+        return colorToReturn
     }
     
     

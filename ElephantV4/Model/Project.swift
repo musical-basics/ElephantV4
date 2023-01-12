@@ -23,6 +23,7 @@ struct Project: Codable {
     var objectiveCounter: Int
     var objectiveList: [Objective]
     
+    var placeholderCounter: Int
     
     mutating func itemAdd(newItem: Item){
         var currentItem = newItem

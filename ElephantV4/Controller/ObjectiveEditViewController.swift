@@ -51,8 +51,9 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
             let newItemToAdd = Item(title: newItemText, project: self.selectedObj.project, objective: self.selectedObj.name, uniqueNum: currentCount!, status: "Inactive")
             
             self.selectedObj.items.append(newItemToAdd)
+//            model.projectDictionary[self.selectedObj.project]?.placeholderCounter += 1
             model.projectDictionary[self.selectedObj.project]?.activeItems.append(newItemToAdd)
-            
+            model.projectDictionary[self.selectedObj.project]?.itemCounter += 1
             model.projectDictionary[self.selectedObj.project]?.objectiveList[self.selectedObjIndex] = self.selectedObj
             model.saveItems()
             self.objectiveTableView.reloadData()

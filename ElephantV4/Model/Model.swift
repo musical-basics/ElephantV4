@@ -26,14 +26,14 @@ class Model {
 
         activeArray =
         [
-            Placeholder(title: "Wix Placeholder 1", timeDone: Date(), project: "Wix", indx: 1, status: "Active"),
             Placeholder(title: "Piano Placeholder 1", timeDone: Date(), project: "Piano", indx: 1, status: "Active"),
-            Placeholder(title: "Wix Placeholder 2", timeDone: Date(), project: "Wix", indx: 2, status: "Active"),
-            Placeholder(title: "None Placeholder 1", timeDone: Date(), project: "None", indx: 1, status: "Active"),
+            Placeholder(title: "Wix Placeholder 1", timeDone: Date(), project: "Wix", indx: 1, status: "Active"),
             Placeholder(title: "Piano Placeholder 2", timeDone: Date(), project: "Piano", indx: 2, status: "Active"),
+            Placeholder(title: "Wix Placeholder 2", timeDone: Date(), project: "Wix", indx: 2, status: "Active"),
+            Placeholder(title: "Piano Placeholder 3", timeDone: Date(), project: "Piano", indx: 3, status: "Active"),
             Placeholder(title: "Cleaning Placeholder 1", timeDone: Date(), project: "Cleaning", indx: 1, status: "Active"),
             Placeholder(title: "None Placeholder 2", timeDone: Date(), project: "None", indx: 2, status: "Active"),
-            Placeholder(title: "Piano Placeholder 3", timeDone: Date(), project: "Piano", indx: 3, status: "Active"),
+            Placeholder(title: "Piano Placeholder 4", timeDone: Date(), project: "Piano", indx: 4, status: "Active"),
 //            Placeholder(title: "None Placeholder 3", timeDone: Date(), project: "None", indx: 9, status: "Active")
         ]
         
@@ -58,10 +58,10 @@ class Model {
         
         projectDictionary =
         [
-            "None" : Project(name: "None", completed: false, priority: 100000, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: []),
-            "Piano" : Project(name: "Piano", completed: false, priority: 3, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: []),
-            "Cleaning" : Project(name: "Cleaning", completed: false, priority: 3, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: []),
-            "Wix": Project(name: "Wix", completed: false, priority: 3, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [])
+            "None" : Project(name: "None", completed: false, priority: 100000, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0),
+            "Piano" : Project(name: "Piano", completed: false, priority: 3, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0),
+            "Cleaning" : Project(name: "Cleaning", completed: false, priority: 3, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0),
+            "Wix": Project(name: "Wix", completed: false, priority: 3, type: "Project", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0)
         ]
         
         let wixArray =
@@ -73,10 +73,10 @@ class Model {
         
         let pianoArray =
         [
-            Item(title: "Practice new dawn", project: "Piano", objective: "Record New Dawn", uniqueNum: 1, status: "Active"),
-            Item(title: "Record New Dawn", project: "Piano", objective: "Record New Dawn", uniqueNum: 2, status: "Active"),
-            Item(title: "Practice HSLB", project: "Piano", objective: "Record HSLB", uniqueNum: 3, status: "Active"),
-            Item(title: "Record HSLB", project: "Piano", objective: "Record HSLB", uniqueNum: 4, status: "Active")
+            Item(title: "Practice new dawn", project: "Piano", objective: "Finish New Dawn", uniqueNum: 1, status: "Active"),
+            Item(title: "Record New Dawn", project: "Piano", objective: "Finish New Dawn", uniqueNum: 2, status: "Inact"),
+            Item(title: "Practice HSLB", project: "Piano", objective: "Finish HSLB", uniqueNum: 3, status: "Inact"),
+            Item(title: "Record HSLB", project: "Piano", objective: "Finish HSLB", uniqueNum: 4, status: "Active")
         ]
         
         let cleaningArray =
@@ -107,25 +107,31 @@ class Model {
         let noneObjective1 = Objective(name: "None", cycle: false, completed: false, items: noneArray, project: "None")
         projectDictionary["None"]?.objectiveList.append(contentsOf: [noneObjective1])
         
-        let wixObjective1 = Objective(name: "Transition Website", cycle: true, completed: false, items: wixArray, project: "Wix")
-        projectDictionary["Wix"]?.objectiveList.append(contentsOf: [wixObjective1])
+        let wixObjective1 = Objective(name: "Old Website", cycle: true, completed: false, items: wixArray, project: "Wix")
+        let wixObjective2 = Objective(name: "New Website", cycle: true, completed: false, items: wixArray, project: "Wix")
+        projectDictionary["Wix"]?.objectiveList.append(contentsOf: [wixObjective1, wixObjective2])
+        
+        let cleanObjective1 = Objective(name: "Clean House", cycle: true, completed: false, items: wixArray, project: "Cleaning")
+        projectDictionary["Cleaning"]?.objectiveList.append(contentsOf: [cleanObjective1])
         
     }
     
     //MARK: - PLACEHOLDER MANAGEMENT
     
-    func priorityDeclaration(project: Project) {
-        var placeholderCounter = 0
-        for _ in 1...project.priority {
-            let newPlaceholder = Placeholder(title: "\(project.name) Placeholder", project: project.name, indx: placeholderCounter, status: "Active")
-            placeholderCounter += 1
-            activeArray.append(newPlaceholder)
-        }
-    }
-    
+//    func priorityDeclaration(project: Project) {
+//        var placeholderCounter = 0
+//        for _ in 1...project.priority {
+//            let newPlaceholder = Placeholder(title: "\(project.name) Placeholder", project: project.name, indx: placeholderCounter, status: "Active")
+//            placeholderCounter += 1
+//            activeArray.append(newPlaceholder)
+//        }
+//    }
+//
     
     func addProject(project: Project) {
-        projectArray.append(project)
+        
+        projectDictionary[project.name] = project
+//        projectArray.append(project)
         var placeholderCounter = 1
         var placeholderInsertArray: [Placeholder] = []
         
@@ -136,7 +142,7 @@ class Model {
             placeholderInsertArray.append(newPlaceholder)
         }
         
-
+        projectDictionary[project.name]?.placeholderCounter = placeholderCounter
         let inactiveItems = insertItems(itemsToInsert: placeholderInsertArray, priority: project.priority)
         
         inactiveArray.append(contentsOf: inactiveItems)
@@ -246,39 +252,39 @@ class Model {
                 print("we added item \(itemAdded.title) from project \(projName) with priority \(proj.priority)")
             }
         }
-        
-        
-        
-        for indx in projectArray {
-            print("hello")
-            let filteredActiveArray = activeArray.filter({ $0.project == indx.name})
-            let filteredInactiveArray = inactiveArray.filter({ $0.project == indx.name})
-            
-            var indexHighest: Float = 0
-            
-            if filteredActiveArray.count == 0 {
-                indexHighest = 0
-            } else {
-                let levelCheck = activeArray.firstIndex { $0.project == indx.name }
-                indexHighest = Float(levelCheck!)
-            }
-            
-            let level = (Float(activeArray.count) / Float(indx.priority)) * Float(filteredActiveArray.count)
-            let finalLevel = Float(activeArray.count) - level
-            
-            if filteredActiveArray.count >= indx.priority || filteredInactiveArray.count == 0 || indexHighest >= finalLevel {
-                print("Nothing was added for \(indx.name) with priority \(indx.priority)")
-            } else {
-                let currentIndex = inactiveArray.firstIndex { $0.indx == filteredInactiveArray[0].indx }
-                inactiveArray[currentIndex!].status = "Active"
-                let itemAdded = inactiveArray[currentIndex!]
-                activeArray.append(itemAdded)
-                inactiveArray.remove(at: currentIndex!)
-                print("we added item \(itemAdded.title) from project \(indx.name) with priority \(indx.priority)")
-            }
-            
-        }
     }
+        
+        
+//        for indx in projectArray {
+//            print("hello")
+//            let filteredActiveArray = activeArray.filter({ $0.project == indx.name})
+//            let filteredInactiveArray = inactiveArray.filter({ $0.project == indx.name})
+//
+//            var indexHighest: Float = 0
+//
+//            if filteredActiveArray.count == 0 {
+//                indexHighest = 0
+//            } else {
+//                let levelCheck = activeArray.firstIndex { $0.project == indx.name }
+//                indexHighest = Float(levelCheck!)
+//            }
+//
+//            let level = (Float(activeArray.count) / Float(indx.priority)) * Float(filteredActiveArray.count)
+//            let finalLevel = Float(activeArray.count) - level
+//
+//            if filteredActiveArray.count >= indx.priority || filteredInactiveArray.count == 0 || indexHighest >= finalLevel {
+//                print("Nothing was added for \(indx.name) with priority \(indx.priority)")
+//            } else {
+//                let currentIndex = inactiveArray.firstIndex { $0.indx == filteredInactiveArray[0].indx }
+//                inactiveArray[currentIndex!].status = "Active"
+//                let itemAdded = inactiveArray[currentIndex!]
+//                activeArray.append(itemAdded)
+//                inactiveArray.remove(at: currentIndex!)
+//                print("we added item \(itemAdded.title) from project \(indx.name) with priority \(indx.priority)")
+//            }
+//
+//        }
+//    }
     
     
     func completeItem(index: Int) {
@@ -288,16 +294,58 @@ class Model {
         
         let projectType = projectDictionary[currentProjectOfItem]!.type
         
+        //handle placeholders
+        activeArray[currentIndex!].indx = projectDictionary[currentProjectOfItem]!.placeholderCounter
+        activeArray[currentIndex!].status = "Inact"
+        inactiveArray.append(activeArray[currentIndex!])
+        projectDictionary[currentProjectOfItem]!.placeholderCounter += 1
         
-        if projectType == "Cycle" {
-            activeArray[currentIndex!].status = "Inactive"
-            inactiveArray.append(activeArray[currentIndex!])
+        
+        //handle actual items
+        let actualItemIndex = index - 1
+        var currentProject = projectDictionary[currentProjectOfItem]!
+        var currentObjective = currentProject.activeItems[actualItemIndex].objective
+        var currentItem = currentProject.activeItems[actualItemIndex]
+        
+        let indexOfObjective = currentProject.objectiveList.firstIndex { $0.name == currentObjective }
+        
+        if currentProject.objectiveList[indexOfObjective!].cycle {
+            
+            //create duplicate item
+            var duplicateItem = currentItem
+            duplicateItem.uniqueNum = currentProject.itemCounter
+            
+            //update the item counter of Project
+            currentProject.itemCounter += 1
+            
+            //insert the duplicate item into the Objective items list
+            currentProject.objectiveList[indexOfObjective!].items.append(duplicateItem)
+ 
+            //insert duplicate item into active list based on the current objective's count. This only works for the 1st Objective level
+            let objectiveCount = currentProject.objectiveList.count
+            currentProject.activeItems.insert(duplicateItem, at: objectiveCount)
+            
+            //complete existing item within both the objective and active list
+            currentProject.activeItems[actualItemIndex].status = "Done"
+            
+            //find item's index in objective list
+            let indexOfItemInObjectiveList = currentProject.objectiveList[indexOfObjective!].items.firstIndex { $0.uniqueNum == currentItem.uniqueNum }
+            
+            //complete existing item within objective list
+            currentProject.objectiveList[indexOfObjective!].items[indexOfItemInObjectiveList!].status = "Done"
+            
+            //replace entire project
+            projectDictionary[currentProjectOfItem] = currentProject
+            
         } else {
-            print("none")
+            projectDictionary[currentProjectOfItem]!.activeItems[actualItemIndex].status = "Done"
+            //find item's index in objective list
+            let indexOfItemInObjectiveList = currentProject.objectiveList[indexOfObjective!].items.firstIndex { $0.uniqueNum == currentItem.uniqueNum }
+            projectDictionary[currentProjectOfItem]!.objectiveList[indexOfObjective!].items[indexOfItemInObjectiveList!].status = "Done"
         }
+        
         activeArray[currentIndex!].status = "Done"
         activeArray[currentIndex!].timeDone = Date()
-//        savedItems.append(activeArray[currentIndex!])
         activeArray.remove(at: currentIndex!)
 
     }
