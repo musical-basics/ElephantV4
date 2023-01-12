@@ -29,39 +29,40 @@ class ProjectsViewController: UIViewController, UITableViewDataSource, UITableVi
         var textField2 = UITextField()
         let alert = UIAlertController(title: "Add Project", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Project", style: .default) { (action) in
-            
+
             var projectName = textField.text!
             var projectPriority = textField2.text!
-            var newProject = Project(name: projectName, completed: false, priority: projectPriority, type: "Spiral", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [])
+            var newProject = Project(name: projectName, completed: false, priority: Int(projectPriority)!, type: "Spiral", itemCounter: 0, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [])
+
+
             
+            model.projectDictionary[newProject.name] = newProject
             
+//            model.priorityDeclaration(project: newProject)
+            model.addProject(project: newProject)
             
-            
-            let currentCount = project?.objectiveCounter
-            
-            let newObjectiveText = textField.text!
-            let newObjectiveToAdd = Objective(name: newObjectiveText, cycle: true, completed: false, items: [], project: self.selectedProject.name)
-            
-            project?.objectiveList.append(newObjectiveToAdd)
-            
-            model.projectDictionary[self.selectedProject.name] = project
             model.saveItems()
-            self.projItemsTable.reloadData()
+            self.projectsTableView.reloadData()
         }
-        
+
         alert.addAction(action)
-        
+
         alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Enter Text for Item"
+            alertTextField.placeholder = "Enter Project Name"
             textField = alertTextField
         }
         
-        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Enter Priority"
+            textField2 = alertTextField
+        }
+
+
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
             print("Cancelled")
         })
         alert.addAction(cancelAction)
-        
+
         present(alert, animated: true, completion: nil)
 
 

@@ -32,6 +32,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         itemTableView.reloadData()
     }
     
+//MARK: - Navigation Bar
+    
+    @IBAction func refreshDataPressed(_ sender: UIBarButtonItem) {
+        self.itemTableView.reloadData()
+    }
+    
     
 //MARK: - 1st Button Row
     

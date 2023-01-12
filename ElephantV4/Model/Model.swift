@@ -123,6 +123,63 @@ class Model {
         }
     }
     
+    
+    func addProject(project: Project) {
+        projectArray.append(project)
+        var placeholderCounter = 1
+        var placeholderInsertArray: [Placeholder] = []
+        
+        
+        for _ in 1...project.priority {
+            let newPlaceholder = Placeholder(title: "\(project.name) Placeholder", project: project.name, indx: placeholderCounter, status: "Active")
+            placeholderCounter += 1
+            placeholderInsertArray.append(newPlaceholder)
+        }
+        
+
+        let inactiveItems = insertItems(itemsToInsert: placeholderInsertArray, priority: project.priority)
+        
+        inactiveArray.append(contentsOf: inactiveItems)
+        
+//        return inactiveItems
+    }
+    
+    func insertItems(itemsToInsert: [Placeholder], priority: Int) -> [Placeholder] {
+        var inactivatedItems: [Placeholder] = []
+        if activeArray.count == 0 {
+            for itm in itemsToInsert {
+                activeArray.append(itm)
+            }
+        } else {
+            var counter = 1
+            let speed = Float(activeArray.count) / Float(priority) + 1
+            print(speed)
+            for itm in itemsToInsert {
+                let insertLevel = Int(speed.rounded(.up))*counter - 1
+                if insertLevel < activeArray.count {
+                    
+                    activeArray.insert(itm, at: insertLevel)
+                    counter += 1
+                    print(activeArray)
+                } else {
+                    print("Item List needs more items")
+//                    let itemDiff = itemsToInsert.count - counter
+                    inactivatedItems.append(itm)
+                    
+                    counter += 1
+                }
+                
+            }
+            
+        }
+        
+        return inactivatedItems
+    }
+
+    
+    
+    
+    
 //    func priorityChange(project: Project, newPriority: Int) {
 //        var placeholderCounter = 0
 //        if newPriority > project.priority {

@@ -178,6 +178,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CeY-go-n87">
+                        <barButtonItem key="leftBarButtonItem" title="Refresh Data" id="Sgn-8U-W6V">
+                            <connections>
+                                <action selector="refreshDataPressed:" destination="BYZ-38-t0r" id="K8S-Za-c73"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Show Projects" id="M7Y-fp-9gP">
                             <connections>
                                 <segue destination="wjK-kU-ARe" kind="show" identifier="ShowProjectsPage" id="56V-Z9-Zvm"/>
@@ -377,7 +382,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1T0-5e-65P"/>
+        <segue reference="MYr-dU-F2G"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

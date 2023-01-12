@@ -108,6 +108,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44155789296EFEF20072D798 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				44C762BD296E9471006F762E /* ObjectiveItemCell.swift */,
+				44C762BE296E9471006F762E /* ObjectiveItemCell.xib */,
+				44C7629B296D4F7B006F762E /* ItemCell.swift */,
+				44C7629C296D4F7B006F762E /* ItemCell.xib */,
+				44C762B7296D8F36006F762E /* ObjectiveCell.swift */,
+				44C762B8296D8F36006F762E /* ObjectiveCell.xib */,
+				44C76264296D44CC006F762E /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4415578A296EFF290072D798 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				44C76262296D44CC006F762E /* ViewController.swift */,
+				44155787296EF6A50072D798 /* ProjectsViewController.swift */,
+				44C762B5296D8A12006F762E /* ProjectItemsViewController.swift */,
+				44C762BB296E8C58006F762E /* ObjectiveEditViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		44C76252296D44CC006F762E = {
 			isa = PBXGroup;
 			children = (
@@ -133,18 +158,9 @@
 			children = (
 				44C7625E296D44CC006F762E /* AppDelegate.swift */,
 				44C76260296D44CC006F762E /* SceneDelegate.swift */,
-				44C76262296D44CC006F762E /* ViewController.swift */,
-				44155787296EF6A50072D798 /* ProjectsViewController.swift */,
-				44C762B5296D8A12006F762E /* ProjectItemsViewController.swift */,
-				44C762BB296E8C58006F762E /* ObjectiveEditViewController.swift */,
-				44C762BD296E9471006F762E /* ObjectiveItemCell.swift */,
-				44C762BE296E9471006F762E /* ObjectiveItemCell.xib */,
-				44C7629B296D4F7B006F762E /* ItemCell.swift */,
-				44C7629C296D4F7B006F762E /* ItemCell.xib */,
-				44C762B7296D8F36006F762E /* ObjectiveCell.swift */,
-				44C762B8296D8F36006F762E /* ObjectiveCell.xib */,
+				4415578A296EFF290072D798 /* Controller */,
+				44155789296EFEF20072D798 /* View */,
 				44C762A1296D5148006F762E /* Model */,
-				44C76264296D44CC006F762E /* Main.storyboard */,
 				44C7626A296D44CC006F762E /* Assets.xcassets */,
 				44C7626C296D44CC006F762E /* LaunchScreen.storyboard */,
 				44C7626F296D44CC006F762E /* Info.plist */,
