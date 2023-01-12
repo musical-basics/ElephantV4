@@ -232,12 +232,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 itemShown = currentItem.title
                 objectiveShown = currentItem.objective
             } else {
-                itemShown = currentPlaceholder.title
+                itemShown = currentPlaceholder.title + String(currentPlaceholder.indx)
                 objectiveShown = ""
             }
             
             
-//            itemShown = currentPlaceholder.title + String(currentPlaceholder.indx)
+            itemShown = currentPlaceholder.title + String(currentPlaceholder.indx)
             
             cell.titleLabel.text = itemShown
     //        cell.titleLabel.text = model.activeArray[indexPath.row].title

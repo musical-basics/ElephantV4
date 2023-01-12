@@ -118,7 +118,7 @@ class Model {
         
         addProject(project: tempProjectDictionary["None"]!)
         addProject(project: tempProjectDictionary["Piano"]!)
-        
+        addProject(project: tempProjectDictionary["Wix"]!)
         
         
     }
@@ -318,6 +318,51 @@ class Model {
         projectDictionary[currentProjectName] = currentProject
         
         
+        
+        
+        
+        //UPDATE all placeholders of this project
+        let newPlaceholderArray = activeArray.filter({$0.project != currentProjectName})
+        let currentLowestIndx = newPlaceholderArray[0].indx
+        
+        //replace active array
+        var tempActiveArray: [Placeholder] = []
+        for placeholder in activeArray {
+            if placeholder.project == currentProjectName {
+                var tempPlaceholder = placeholder
+                let currentIndxValue = tempPlaceholder.indx
+                let newIndxValue = currentIndxValue - currentLowestIndx + 1
+                tempPlaceholder.indx = newIndxValue
+                tempActiveArray.append(tempPlaceholder)
+            } else {
+                tempActiveArray.append(placeholder)
+            }
+        }
+        activeArray = tempActiveArray
+            
+        
+        //replace inactive array
+        var tempInactiveArray: [Placeholder] = []
+        for placeholder in inactiveArray {
+            if placeholder.project == currentProjectName {
+                var tempPlaceholder = placeholder
+                let currentIndxValue = tempPlaceholder.indx
+                let newIndxValue = currentIndxValue - currentLowestIndx + 1
+                tempPlaceholder.indx = newIndxValue
+                tempInactiveArray.append(tempPlaceholder)
+            } else {
+                tempInactiveArray.append(placeholder)
+            }
+        }
+        inactiveArray = tempInactiveArray
+        
+        
+        //update the placeholder counter
+        let newPlaceholderCounter = projectDictionary[currentProjectName]!.placeholderCounter - currentLowestIndx + 1
+        projectDictionary[currentProjectName]?.placeholderCounter = newPlaceholderCounter
+        
+        
+        //check if objective list is empty - if so, then remove project and all placeholders
         
     }
     
