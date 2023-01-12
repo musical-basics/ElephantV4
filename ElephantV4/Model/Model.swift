@@ -362,7 +362,24 @@ class Model {
         projectDictionary[currentProjectName]?.placeholderCounter = newPlaceholderCounter
         
         
-        //check if objective list is empty - if so, then remove project and all placeholders
+        //check if objective list is empty - if so, then remove project and all placeholders - completing last remaining objective is akin to completing project
+        if ((currentProject?.objectiveList.isEmpty) != nil) {
+            print("project needs to be deleted")
+        }
+        
+    }
+    
+    func completeProject(project: Project) {
+        //remove placeholders
+        var currentProject = projectDictionary[project.name]
+        
+        //create temporary arrays
+        let tempActiveArray = activeArray.filter({$0.project != project.name})
+        let tempInactiveArray = inactiveArray.filter({$0.project != project.name})
+        
+        //update master arrays
+        activeArray = tempActiveArray
+        inactiveArray = tempInactiveArray
         
     }
     

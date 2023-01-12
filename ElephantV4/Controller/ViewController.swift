@@ -204,6 +204,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
+    @IBAction func completeProjectPressed(_ sender: UIButton) {
+        let currentProjectName = currentSelection.project
+        let currentProject = model.projectDictionary[currentProjectName]
+        model.completeProject(project: currentProject!)
+        
+        itemTableView.reloadData()
+    }
+    
+    
     
     
     
@@ -237,7 +246,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
             
-            itemShown = currentPlaceholder.title + String(currentPlaceholder.indx)
+//            itemShown = currentPlaceholder.title + String(currentPlaceholder.indx)
             
             cell.titleLabel.text = itemShown
     //        cell.titleLabel.text = model.activeArray[indexPath.row].title
