@@ -298,6 +298,30 @@ class Model {
 //        }
 //    }
     
+    func completeObjective(objective: Objective) {
+        let currentObjective = objective
+        let currentProjectName = objective.project
+        var currentProject = projectDictionary[currentProjectName]
+        
+        let indexOfObjective = currentProject?.objectiveList.firstIndex {$0.name == currentObjective.name}
+        
+        currentProject?.objectiveList.remove(at: indexOfObjective!)
+        
+        let activeItemsWithoutObjective = currentProject?.activeItems.filter({$0.objective != currentObjective.name})
+        
+        currentProject?.activeItems = activeItemsWithoutObjective!
+       
+        
+//        let filteredObjectiveItems = currentProject.objectiveList[indexOfObjective!].items.filter({$0.status == "Active"})
+        
+        //send it back to the main project dictionary
+        projectDictionary[currentProjectName] = currentProject
+        
+        
+        
+    }
+    
+    
     
     func completeItem(index: Int) {
 //        let currentIndex = activeArray.firstIndex { $0.indx == index }

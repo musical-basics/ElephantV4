@@ -192,6 +192,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+//MARK: - Third Button Row
+    
+    @IBAction func completeObjectivePressed(_ sender: UIButton) {
+        let currentProjectName = currentSelection.project
+        let currentProject = model.projectDictionary[currentProjectName]
+        let currentObjective = currentProject?.objectiveList[0]
+        model.completeObjective(objective: currentObjective!)
+        
+        itemTableView.reloadData()
+    }
+    
+    
+    
     
     
     

@@ -160,21 +160,37 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="h1O-wh-vlX">
-                                <rect key="frame" x="5" y="338" width="380" height="300"/>
+                                <rect key="frame" x="5" y="388" width="380" height="300"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="380" id="LE6-gF-jfa"/>
                                     <constraint firstAttribute="height" constant="300" id="YkZ-0c-mkV"/>
                                 </constraints>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spf-AA-S5X">
+                                <rect key="frame" x="127.33333333333333" y="323" width="135.66666666666669" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="7dn-Ju-FKO"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Complete Objective">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="completeObjectivePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7s1-TN-G9Y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="h1O-wh-vlX" firstAttribute="top" secondItem="l15-ej-1fB" secondAttribute="bottom" constant="50" id="2g8-FH-km1"/>
+                            <constraint firstItem="h1O-wh-vlX" firstAttribute="top" secondItem="l15-ej-1fB" secondAttribute="bottom" constant="100" id="2g8-FH-km1"/>
+                            <constraint firstItem="Spf-AA-S5X" firstAttribute="top" secondItem="l15-ej-1fB" secondAttribute="bottom" constant="35" id="c35-2m-HRW"/>
+                            <constraint firstItem="h1O-wh-vlX" firstAttribute="top" secondItem="Spf-AA-S5X" secondAttribute="bottom" constant="35" id="cFT-TL-PTh"/>
                             <constraint firstItem="l15-ej-1fB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mSA-HU-bYk"/>
                             <constraint firstItem="h1O-wh-vlX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mes-un-9OL"/>
                             <constraint firstItem="l15-ej-1fB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vod-44-G7z"/>
+                            <constraint firstItem="Spf-AA-S5X" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zxq-BJ-KfE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CeY-go-n87">
