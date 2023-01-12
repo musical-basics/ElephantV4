@@ -89,7 +89,7 @@ class ProjectsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        print(indexPath.row)
         if let currentSelect = keysArray[safe: indexPath.row] {
             selectedProject = model.projectDictionary[currentSelect]!
             selectedProjectIndex = indexPath.row

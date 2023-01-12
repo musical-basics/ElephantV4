@@ -16,6 +16,7 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         selectedProjectLabel.text = selectedProject.name
+        print(selectedProject.name)
         
 //        selectedObjective = Objective(name: "", cycle: false, completed: false, items: [], project: "")
         
@@ -90,7 +91,7 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
 //        let projLookup = model.activeArray[indexPath.row].project
 //        let numIndex = model.activeArray[indexPath.row].indx - 1
 //
-        var objectiveShown = ""
+        var objectiveShown = model.projectDictionary[selectedProject.name]?.objectiveList[indexPath.row].name
 //        if let currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
 //            itemShown = currentItem.title
 //        } else {
@@ -98,7 +99,7 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
 //        }
 
         
-        cell.titleLabel.text = "Objective: \(objectiveShown)"
+        cell.titleLabel.text = "Objective: \(objectiveShown!)"
         
         
         if let currentObjective = model.projectDictionary[selectedProject.name]?.objectiveList[safe: indexPath.row] {

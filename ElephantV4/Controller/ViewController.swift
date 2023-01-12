@@ -21,7 +21,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         itemTableView.delegate = self
         itemTableView.dataSource = self
         
@@ -114,18 +113,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         }
         
-//        var itemShown = ""
-//        var objectiveShown = ""
-//        if let currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
-//            itemShown = currentItem.title
-//            objectiveShown = currentItem.objective
-//        } else {
-//            itemShown = currentPlace.title
-//            objectiveShown = ""
-//        }
-//
-        
-        
+    }
                 
         
         
@@ -133,7 +121,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         
         
-    }
+    
     
     
     
