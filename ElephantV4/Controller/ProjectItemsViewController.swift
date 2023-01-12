@@ -105,54 +105,67 @@ class ProjectItemsViewController: UIViewController, UITableViewDataSource, UITab
         if let currentObjective = model.projectDictionary[selectedProject.name]?.objectiveList[safe: indexPath.row] {
             
             objectiveShown = currentObjective.name
+            
+            
+            cell.stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
-            if let item1 = currentObjective.items[safe: 0] {
-                cell.item1Label.text = item1.title
-                cell.item1Label?.numberOfLines = 0;
-                cell.item1Label?.lineBreakMode = .byWordWrapping;
-                cell.item1Label?.textColor = returnColor(item: item1)
-            } else {
-                cell.item1Label.text = ""
-                cell.item1Label?.numberOfLines = 0;
-                cell.item1Label?.lineBreakMode = .byWordWrapping;
-                cell.item1Label?.textColor = UIColor.black
+            for item in currentObjective.items {
+                let label = UILabel()
+                label.text = item.title
+                label.textColor = returnColor(item: item)
+                label.numberOfLines = 0;
+                label.lineBreakMode = .byWordWrapping;
+                cell.stackView.addArrangedSubview(label)
             }
             
-            if let item2 = currentObjective.items[safe: 1] {
-                cell.item2Label.text = item2.title
-                cell.item2Label?.numberOfLines = 0;
-                cell.item2Label?.lineBreakMode = .byWordWrapping;
-                cell.item2Label?.textColor = returnColor(item: item2)
-            } else {
-                cell.item2Label.text = ""
-                cell.item2Label?.numberOfLines = 0;
-                cell.item2Label?.lineBreakMode = .byWordWrapping;
-                cell.item2Label?.textColor = UIColor.black
-            }
-            
-            if let item3 = currentObjective.items[safe: 2] {
-                cell.item3Label.text = item3.title
-                cell.item3Label?.numberOfLines = 0;
-                cell.item3Label?.lineBreakMode = .byWordWrapping;
-                cell.item3Label?.textColor = returnColor(item: item3)
-            } else {
-                cell.item3Label.text = ""
-                cell.item3Label?.numberOfLines = 0;
-                cell.item3Label?.lineBreakMode = .byWordWrapping;
-                cell.item3Label?.textColor = UIColor.black
-            }
-            
-            if let item4 = currentObjective.items[safe: 3] {
-                cell.item4Label.text = item4.title
-                cell.item4Label?.numberOfLines = 0;
-                cell.item4Label?.lineBreakMode = .byWordWrapping;
-                cell.item4Label?.textColor = returnColor(item: item4)
-            } else {
-                cell.item4Label.text = ""
-                cell.item4Label?.numberOfLines = 0;
-                cell.item4Label?.lineBreakMode = .byWordWrapping;
-                cell.item4Label?.textColor = UIColor.black
-            }
+//
+//            if let item1 = currentObjective.items[safe: 0] {
+//                cell.item1Label.text = item1.title
+//                cell.item1Label?.numberOfLines = 0;
+//                cell.item1Label?.lineBreakMode = .byWordWrapping;
+//                cell.item1Label?.textColor = returnColor(item: item1)
+//            } else {
+//                cell.item1Label.text = ""
+//                cell.item1Label?.numberOfLines = 0;
+//                cell.item1Label?.lineBreakMode = .byWordWrapping;
+//                cell.item1Label?.textColor = UIColor.black
+//            }
+//
+//            if let item2 = currentObjective.items[safe: 1] {
+//                cell.item2Label.text = item2.title
+//                cell.item2Label?.numberOfLines = 0;
+//                cell.item2Label?.lineBreakMode = .byWordWrapping;
+//                cell.item2Label?.textColor = returnColor(item: item2)
+//            } else {
+//                cell.item2Label.text = ""
+//                cell.item2Label?.numberOfLines = 0;
+//                cell.item2Label?.lineBreakMode = .byWordWrapping;
+//                cell.item2Label?.textColor = UIColor.black
+//            }
+//
+//            if let item3 = currentObjective.items[safe: 2] {
+//                cell.item3Label.text = item3.title
+//                cell.item3Label?.numberOfLines = 0;
+//                cell.item3Label?.lineBreakMode = .byWordWrapping;
+//                cell.item3Label?.textColor = returnColor(item: item3)
+//            } else {
+//                cell.item3Label.text = ""
+//                cell.item3Label?.numberOfLines = 0;
+//                cell.item3Label?.lineBreakMode = .byWordWrapping;
+//                cell.item3Label?.textColor = UIColor.black
+//            }
+//
+//            if let item4 = currentObjective.items[safe: 3] {
+//                cell.item4Label.text = item4.title
+//                cell.item4Label?.numberOfLines = 0;
+//                cell.item4Label?.lineBreakMode = .byWordWrapping;
+//                cell.item4Label?.textColor = returnColor(item: item4)
+//            } else {
+//                cell.item4Label.text = ""
+//                cell.item4Label?.numberOfLines = 0;
+//                cell.item4Label?.lineBreakMode = .byWordWrapping;
+//                cell.item4Label?.textColor = UIColor.black
+//            }
         } else {
             objectiveShown = ""
         }

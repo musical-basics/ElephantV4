@@ -126,8 +126,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     @IBAction func completeItemPressed(_ sender: UIButton) {
-        let tempNum = currentSelection.indx
-        model.completeItem(index: tempNum)
+        model.completeItem(index: currentIndx)
         model.activateNextItem()
         model.saveItems()
         self.itemTableView.reloadData()
@@ -208,11 +207,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if let currentItem = model.activeArray[safe: indexPath.row] {
             let projLookup = currentItem.project
-            let numIndex = currentItem.indx - 1
+//            let numIndex = currentItem.indx
             
             var itemShown = ""
             var objectiveShown = ""
-            if let currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
+            if let currentItem = model.projectDictionary[projLookup]?.activeItems[safe: indexPath.row] {
                 itemShown = currentItem.title
                 objectiveShown = currentItem.objective
             } else {
