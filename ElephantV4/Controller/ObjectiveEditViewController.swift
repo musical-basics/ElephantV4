@@ -31,8 +31,6 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
         objectiveLabel.numberOfLines = 0;
         objectiveLabel.lineBreakMode = .byWordWrapping;
         
-
-     
         self.objectiveTableView.reloadData()
     }
     
@@ -66,17 +64,13 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
             textField = alertTextField
         }
         
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
             print("Cancelled")
         })
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
-        
     }
-    
-    
     
     
     
@@ -90,14 +84,14 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
 //        cell.itemLabel?.text = "HELLO"
 //        cell.itemLabel?.numberOfLines = 0;
 //        cell.itemLabel?.lineBreakMode = .byWordWrapping;
-//
-//
-        
+
         cell.textLabel?.text = selectedObj.items[indexPath.row].title
         
 //        cell.textLabel?.text = "hello"
         if selectedObj.items[indexPath.row].status == "Active" {
             cell.textLabel?.textColor = UIColor.black
+        } else if selectedObj.items[indexPath.row].status == "Done" {
+            cell.textLabel?.textColor = UIColor.green
         } else {
             cell.textLabel?.textColor = UIColor.red
         }
@@ -132,8 +126,6 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
             alertTextField.text = selectedItem.title
             textField = alertTextField
         }
-        
-        
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
             print("Cancelled")

@@ -356,18 +356,16 @@ class Model {
         }
         inactiveArray = tempInactiveArray
         
-        
         //update the placeholder counter
         let newPlaceholderCounter = projectDictionary[currentProjectName]!.placeholderCounter - currentLowestIndx + 1
         projectDictionary[currentProjectName]?.placeholderCounter = newPlaceholderCounter
         
-        
         //check if objective list is empty - if so, then remove project and all placeholders - completing last remaining objective is akin to completing project
-        if ((currentProject?.objectiveList.isEmpty) != nil) {
-            print("project needs to be deleted")
+        if currentProject!.objectiveList.isEmpty {
+            completeProject(project: currentProject!)
         }
-        
     }
+    
     
     func completeProject(project: Project) {
         //remove placeholders
@@ -380,7 +378,6 @@ class Model {
         //update master arrays
         activeArray = tempActiveArray
         inactiveArray = tempInactiveArray
-        
     }
     
     
@@ -408,7 +405,6 @@ class Model {
         activeArray[index].timeDone = Date()
         activeArray.remove(at: index)
         
-        
         //handle actual items
         var currentProject = projectDictionary[currentProjectOfItem]!
 //        let actualItemIndex = currentProject.activeItems.firstIndex { $0.uniqueNum == placeholderIndex }
@@ -428,9 +424,6 @@ class Model {
         
         if currentProject.objectiveList[indexOfObjective!].cycle {
             
-
-            
-            
             //count objective items
             let filteredObjectiveItems = currentProject.objectiveList[indexOfObjective!].items.filter({$0.status == "Active"})
             let objectiveCount = filteredObjectiveItems.count
@@ -441,9 +434,6 @@ class Model {
             //complete existing item within objective list
             currentProject.objectiveList[indexOfObjective!].items[indexOfItemInObjectiveList!].status = "Done"
 
-            
-            
-            
             //create duplicate item
             var duplicateItem = currentItem
             duplicateItem.uniqueNum = currentProject.itemCounter
@@ -458,8 +448,6 @@ class Model {
 //            print(currentProject.objectiveList[indexOfObjective!].items)
             //insert duplicate item into active list based on the current objective's count. This only works for the 1st Objective level
             
-            
-
 
             currentProject.activeItems.insert(duplicateItem, at: objectiveCount)
             
@@ -473,12 +461,7 @@ class Model {
             
             //find item's index in objective list
 
-            
-            
-            
-            
-            
-            
+
             //replace entire project
             
             

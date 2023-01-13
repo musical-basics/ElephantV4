@@ -200,6 +200,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let currentObjective = currentProject?.objectiveList[0]
         model.completeObjective(objective: currentObjective!)
         
+        
+        
         itemTableView.reloadData()
     }
     
