@@ -86,13 +86,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         print(numIndex)
         
         var textField = UITextField()
-        if var currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
+//        if var currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
+        if var currentItem = model.projectDictionary[projLookup]?.objectiveList[0].items[safe: numIndex] {
             let alert = UIAlertController(title: "Edit Item", message: "", preferredStyle: .alert)
             let action = UIAlertAction(title: "Edit Item", style: .default) { (action) in
                 currentItem.title = textField.text!
                 
                 
-                model.projectDictionary[currentItem.project]?.activeItems[numIndex] = currentItem
+//                model.projectDictionary[currentItem.project]?.activeItems[numIndex] = currentItem
+                let lookupActiveIndex = model.projectDictionary[currentItem.project]?.activeItems.firstIndex { $0.uniqueNum == currentItem.uniqueNum }
+                model.projectDictionary[currentItem.project]?.activeItems[lookupActiveIndex!] = currentItem
+                
                 model.projectDictionary[currentItem.project]?.objectiveList[0].items[numIndex] = currentItem
                 model.saveItems()
                 self.itemTableView.reloadData()
