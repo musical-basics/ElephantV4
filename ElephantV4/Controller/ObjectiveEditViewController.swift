@@ -42,17 +42,40 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
         let alert = UIAlertController(title: "Add Item To Objective", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             
-            let project = model.projectDictionary[self.selectedObj.project]
-            let currentCount = project?.itemCounter
+            var thisProject = model.projectDictionary[self.selectedObj.project]
+            var thisObjective = model.projectDictionary[self.selectedObj.project]?.objectiveList[self.selectedObjIndex]
+            
             
             let newItemText = textField.text!
-            let newItemToAdd = Item(title: newItemText, project: self.selectedObj.project, objective: self.selectedObj.name, uniqueNum: currentCount!, status: "Active")
+            let newItemToAdd = Item(title: newItemText, project: self.selectedObj.project, objective: self.selectedObj.name, uniqueNum: thisProject!.itemCounter, status: "Active")
             
-            self.selectedObj.items.append(newItemToAdd)
-//            model.projectDictionary[self.selectedObj.project]?.placeholderCounter += 1
-            model.projectDictionary[self.selectedObj.project]?.activeItems.append(newItemToAdd)
-            model.projectDictionary[self.selectedObj.project]?.itemCounter += 1
-            model.projectDictionary[self.selectedObj.project]?.objectiveList[self.selectedObjIndex] = self.selectedObj
+//            print(project!.itemCounter)
+            
+            model.addItemToProject(itemToAdd: newItemToAdd, objective: thisObjective!, objIndex: self.selectedObjIndex, project: thisProject!)
+            
+            
+//            self.selectedObj.items.append(newItemToAdd)
+//
+//            //update objective
+//            project!.objectiveList[self.selectedObjIndex] = self.selectedObj
+//
+//
+//            //count objective items
+//            let filteredObjectiveItems = project!.objectiveList[self.selectedObjIndex].items.filter({$0.status == "Active"})
+//            let objectiveCount = filteredObjectiveItems.count
+//            print(project!.itemCounter)
+//
+//            project!.activeItems.insert(newItemToAdd, at: objectiveCount)
+//            project!.itemCounter += 1
+//
+////            model.projectDictionary[self.selectedObj.project]?.placeholderCounter += 1
+////            model.projectDictionary[self.selectedObj.project]?.activeItems.append(newItemToAdd)
+////            model.projectDictionary[self.selectedObj.project]?.itemCounter += 1
+////            model.projectDictionary[self.selectedObj.project]?.objectiveList[self.selectedObjIndex] = self.selectedObj
+//
+//            model.projectDictionary[self.selectedObj.project] = project
+            
+            
             model.saveItems()
             self.objectiveTableView.reloadData()
         }
@@ -75,7 +98,8 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedObj.items.count
+        let currentObj = model.projectDictionary[selectedObj.project]?.objectiveList[selectedObjIndex]
+        return currentObj!.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,12 +109,15 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
 //        cell.itemLabel?.numberOfLines = 0;
 //        cell.itemLabel?.lineBreakMode = .byWordWrapping;
 
-        cell.textLabel?.text = selectedObj.items[indexPath.row].title
+        let currentObj = model.projectDictionary[selectedObj.project]?.objectiveList[selectedObjIndex]
+        
+        
+        cell.textLabel?.text = currentObj!.items[indexPath.row].title
         
 //        cell.textLabel?.text = "hello"
-        if selectedObj.items[indexPath.row].status == "Active" {
+        if currentObj!.items[indexPath.row].status == "Active" {
             cell.textLabel?.textColor = UIColor.black
-        } else if selectedObj.items[indexPath.row].status == "Done" {
+        } else if currentObj!.items[indexPath.row].status == "Done" {
             cell.textLabel?.textColor = UIColor.green
         } else {
             cell.textLabel?.textColor = UIColor.red
@@ -133,9 +160,5 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
-        
-        
-        
-        
     }
 }

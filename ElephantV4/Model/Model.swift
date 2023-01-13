@@ -116,12 +116,43 @@ class Model {
         let cleanObjective1 = Objective(name: "House Cleaning", cycle: true, completed: false, items: cleaningArray, project: "Cleaning")
         tempProjectDictionary["Cleaning"]?.objectiveList.append(contentsOf: [cleanObjective1])
         
-        addProject(project: tempProjectDictionary["None"]!)
+//        addProject(project: tempProjectDictionary["None"]!)
         addProject(project: tempProjectDictionary["Piano"]!)
-        addProject(project: tempProjectDictionary["Wix"]!)
+//        addProject(project: tempProjectDictionary["Wix"]!)
         
         
     }
+    
+    //MARK: - ACTUAL ITEM MANAGEMENT
+    
+    func addItemToProject(itemToAdd: Item, objective: Objective, objIndex: Int, project: Project) {
+        
+        
+        //count objective items
+        let filteredObjectiveItems = project.objectiveList[objIndex].items.filter({$0.status == "Active"})
+        let objectiveCount = filteredObjectiveItems.count
+        
+        
+        var newObj = objective
+        newObj.items.append(itemToAdd)
+        
+        var newProj = project
+        
+        newProj.objectiveList[objIndex] = newObj
+        
+        
+        
+        newProj.activeItems.insert(itemToAdd, at: objectiveCount)
+        newProj.itemCounter += 1
+        
+        
+        projectDictionary[project.name] = newProj
+
+    }
+    
+    
+    
+    
     
     //MARK: - PLACEHOLDER MANAGEMENT
     
@@ -412,7 +443,6 @@ class Model {
         
         var currentObjective = currentProject.objectiveList[0].name
         
-        
 //        var currentObjective = currentProject.activeItems[actualItemIndex].objective
         var currentItem = currentProject.activeItems[activeItemIndex]
         
@@ -420,7 +450,8 @@ class Model {
 //        print(currentProject.activeItems)
         
         let indexOfObjective = currentProject.objectiveList.firstIndex { $0.name == currentObjective }
-//        print(indexOfObjective)
+//        let indexOfObjective = 0
+        print(indexOfObjective)
         
         if currentProject.objectiveList[indexOfObjective!].cycle {
             

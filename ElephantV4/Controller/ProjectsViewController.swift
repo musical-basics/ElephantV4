@@ -41,9 +41,15 @@ class ProjectsViewController: UIViewController, UITableViewDataSource, UITableVi
 //            model.priorityDeclaration(project: newProject)
             model.addProject(project: newProject)
             
+
+            
             model.saveItems()
             self.keysArray = Array(model.projectDictionary.keys)
             self.projectsTableView.reloadData()
+            
+            //add 1 objective
+            self.selectedProject = newProject
+            self.performSegue(withIdentifier: "showProjectItemList", sender: nil)
         }
 
         alert.addAction(action)

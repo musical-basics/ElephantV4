@@ -78,10 +78,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func editItemPressed(_ sender: UIButton) {
         
-        var currentPlace = model.activeArray[safe: currentIndx]
+        //get current placeholder
+        var currentPlaceholder = model.activeArray[safe: currentIndx]
         
-        let projLookup = currentPlace!.project
-        let numIndex = currentPlace!.indx - 1
+        let projLookup = currentPlaceholder!.project
+        let numIndex = currentPlaceholder!.indx
+        print(numIndex)
         
         var textField = UITextField()
         if var currentItem = model.projectDictionary[projLookup]?.activeItems[safe: numIndex] {
