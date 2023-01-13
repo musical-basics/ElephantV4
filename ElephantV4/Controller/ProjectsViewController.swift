@@ -42,6 +42,7 @@ class ProjectsViewController: UIViewController, UITableViewDataSource, UITableVi
             model.addProject(project: newProject)
             
             model.saveItems()
+            self.keysArray = Array(model.projectDictionary.keys)
             self.projectsTableView.reloadData()
         }
 

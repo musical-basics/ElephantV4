@@ -428,16 +428,21 @@ class Model {
         
         if currentProject.objectiveList[indexOfObjective!].cycle {
             
-            let filteredObjectiveItems = currentProject.objectiveList[indexOfObjective!].items.filter({$0.status == "Active"})
-            let objectiveCount = filteredObjectiveItems.count
-//            print(objectiveCount)
+
             
-            let indexOfItemInObjectiveList = currentProject.objectiveList[indexOfObjective!].items.firstIndex { $0.uniqueNum == currentItem.uniqueNum }
-//            let indexOfItemInObjectiveList = actualItemIndex
-            //complete existing item within objective list
-            currentProject.objectiveList[indexOfObjective!].items[indexOfItemInObjectiveList!].status = "Done"
             
             //count objective items
+            let filteredObjectiveItems = currentProject.objectiveList[indexOfObjective!].items.filter({$0.status == "Active"})
+            let objectiveCount = filteredObjectiveItems.count
+            print(objectiveCount)
+            
+            let indexOfItemInObjectiveList = currentProject.objectiveList[indexOfObjective!].items.firstIndex { $0.uniqueNum == currentItem.uniqueNum }
+            //            let indexOfItemInObjectiveList = actualItemIndex
+            //complete existing item within objective list
+            currentProject.objectiveList[indexOfObjective!].items[indexOfItemInObjectiveList!].status = "Done"
+
+            
+            
             
             //create duplicate item
             var duplicateItem = currentItem
@@ -454,6 +459,7 @@ class Model {
             //insert duplicate item into active list based on the current objective's count. This only works for the 1st Objective level
             
             
+
 
             currentProject.activeItems.insert(duplicateItem, at: objectiveCount)
             

@@ -48,7 +48,7 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
             let currentCount = project?.itemCounter
             
             let newItemText = textField.text!
-            let newItemToAdd = Item(title: newItemText, project: self.selectedObj.project, objective: self.selectedObj.name, uniqueNum: currentCount!, status: "Inactive")
+            let newItemToAdd = Item(title: newItemText, project: self.selectedObj.project, objective: self.selectedObj.name, uniqueNum: currentCount!, status: "Active")
             
             self.selectedObj.items.append(newItemToAdd)
 //            model.projectDictionary[self.selectedObj.project]?.placeholderCounter += 1
