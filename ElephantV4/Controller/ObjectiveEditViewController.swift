@@ -44,7 +44,7 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
             
             var thisProject = model.projectDictionary[self.selectedObj.project]
             var thisObjective = model.projectDictionary[self.selectedObj.project]?.objectiveList[self.selectedObjIndex]
-            
+            print(self.selectedObjIndex)
             
             let newItemText = textField.text!
             let newItemToAdd = Item(title: newItemText, project: self.selectedObj.project, objective: self.selectedObj.name, uniqueNum: thisProject!.itemCounter, status: "Active")

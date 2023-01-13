@@ -116,9 +116,9 @@ class Model {
         let cleanObjective1 = Objective(name: "House Cleaning", cycle: true, completed: false, items: cleaningArray, project: "Cleaning")
         tempProjectDictionary["Cleaning"]?.objectiveList.append(contentsOf: [cleanObjective1])
         
-//        addProject(project: tempProjectDictionary["None"]!)
+        addProject(project: tempProjectDictionary["None"]!)
         addProject(project: tempProjectDictionary["Piano"]!)
-//        addProject(project: tempProjectDictionary["Wix"]!)
+        addProject(project: tempProjectDictionary["Wix"]!)
         
         
     }
@@ -132,17 +132,32 @@ class Model {
         let filteredObjectiveItems = project.objectiveList[objIndex].items.filter({$0.status == "Active"})
         let objectiveCount = filteredObjectiveItems.count
         
+        var newProj = project
+        
+        
+        //need to check all earlier objectives
+        var newCounter = 0
+        
+        for indx in 0...objIndex {
+            print(indx)
+            let tempArray = newProj.objectiveList[indx].items.filter({$0.status == "Active"})
+            let tempCount = tempArray.count
+//            print(tempCount)
+            newCounter = newCounter + tempCount
+//            newCounter += 1
+        }
+        
+        print(newCounter)
         
         var newObj = objective
         newObj.items.append(itemToAdd)
-        
-        var newProj = project
-        
+
         newProj.objectiveList[objIndex] = newObj
         
         
+
         
-        newProj.activeItems.insert(itemToAdd, at: objectiveCount)
+        newProj.activeItems.insert(itemToAdd, at: newCounter)
         newProj.itemCounter += 1
         
         
@@ -353,7 +368,7 @@ class Model {
         
         
         //UPDATE all placeholders of this project
-        let newPlaceholderArray = activeArray.filter({$0.project != currentProjectName})
+        let newPlaceholderArray = activeArray.filter({$0.project == currentProjectName})
         let currentLowestIndx = newPlaceholderArray[0].indx
         
         //replace active array
