@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         itemTableView.delegate = self
         itemTableView.dataSource = self
         
+        
         currentSelection = model.activeArray[0]
         itemTableView.register(UINib(nibName: "ItemCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         timeLabel.numberOfLines = 0;
@@ -51,8 +52,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let newItemToAdd = Item(title: newItemName, project: "None", objective: "None", uniqueNum: currentNoneCounter!, status: "Inactive")
             
             model.projectDictionary["None"]?.itemCounter = currentNoneCounter!+1
-            model.projectDictionary["None"]?.inactiveItems.append(newItemToAdd)
+            model.projectDictionary["None"]?.activeItems.append(newItemToAdd)
             model.projectDictionary["None"]?.objectiveList[0].items.append(newItemToAdd)
+            
+            let placeholderCounter = model.projectDictionary["None"]?.placeholderCounter
+            let newPlaceholder = Placeholder(title: "Placeholder", project: "None", indx: placeholderCounter!, status: "Active")
+            model.activeArray.append(newPlaceholder)
+            model.projectDictionary["None"]?.placeholderCounter = placeholderCounter! + 1
             
             model.saveItems()
             self.itemTableView.reloadData()
@@ -136,7 +142,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         model.activateNextItem()
         model.saveItems()
         self.itemTableView.reloadData()
-        self.currentSelection = model.activeArray[0]
+        
+        if let checkEmpty = model.activeArray[safe: 0] {
+            currentSelection = model.activeArray[0]
+        } else {
+            currentSelection = Placeholder(title: "Placeholder", project: "None", indx: 0, status: "Active")
+        }
+//        self.currentSelection = model.activeArray[0]
         
         timer.invalidate()
         (hours, minutes, seconds) = (0, 0, 0)
@@ -197,6 +209,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             viewController?.selectedProject = projSelected!
         }
     }
+    
+    
+    
+    @IBAction func backupPlistPressed(_ sender: UIButton) {
+        model.backupPlistFiles()
+        let alert = UIAlertController(title: "Files Saved.", message: "", preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            alert.dismiss(animated: true, completion: nil)
+        })
+    }
+    
+    
+    
     
 //MARK: - Third Button Row
     

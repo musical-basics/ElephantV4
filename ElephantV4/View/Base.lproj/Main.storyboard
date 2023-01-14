@@ -147,6 +147,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Backup Plist">
                                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="backupPlistPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LfR-u1-Yy3"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>

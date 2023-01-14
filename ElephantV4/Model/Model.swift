@@ -17,9 +17,10 @@ class Model {
     let inactiveFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("InactiveItems.plist")
     let saveFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("SavedItems.plist")
     let projectsFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Projects.plist")
+    let projectDictionaryFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("ProjectDictionary.plist")
     
     init() {
-//        loadItems()
+        loadItems()
         
         
         
@@ -116,9 +117,26 @@ class Model {
         let cleanObjective1 = Objective(name: "House Cleaning", cycle: true, completed: false, items: cleaningArray, project: "Cleaning")
         tempProjectDictionary["Cleaning"]?.objectiveList.append(contentsOf: [cleanObjective1])
         
-        addProject(project: tempProjectDictionary["None"]!)
-        addProject(project: tempProjectDictionary["Piano"]!)
-        addProject(project: tempProjectDictionary["Wix"]!)
+//        addProject(project: tempProjectDictionary["None"]!)
+//        addProject(project: tempProjectDictionary["Piano"]!)
+//        addProject(project: tempProjectDictionary["Wix"]!)
+        
+        
+        
+        
+        var noneProject = Project(name: "None", completed: false, priority: 3, type: "Project", itemCounter: 3, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0)
+        let noneObjective = Objective(name: "None", cycle: false, completed: false, items: [], project: "None")
+        noneProject.objectiveList.append(noneObjective)
+        projectDictionary["None"] = noneProject
+        
+        
+        if let checkNil = activeArray[safe: 0] {
+        } else {
+            let newPlaceholder = Placeholder(title: "Placeholder", project: "None", indx: 0, status: "Active")
+            projectDictionary["None"]?.placeholderCounter = 1
+            activeArray.append(newPlaceholder)
+        }
+            
         
         
     }
@@ -459,6 +477,7 @@ class Model {
         var currentObjective = currentProject.objectiveList[0].name
         
 //        var currentObjective = currentProject.activeItems[actualItemIndex].objective
+        print(activeItemIndex)
         var currentItem = currentProject.activeItems[activeItemIndex]
         
 //        print(currentItem)
@@ -513,6 +532,7 @@ class Model {
             
         } else {
             projectDictionary[currentProjectOfItem]!.activeItems[activeItemIndex].status = "Done"
+            currentProject.activeItems.remove(at: activeItemIndex)
             //find item's index in objective list
             let indexOfItemInObjectiveList = currentProject.objectiveList[indexOfObjective!].items.firstIndex { $0.uniqueNum == currentItem.uniqueNum }
             projectDictionary[currentProjectOfItem]!.objectiveList[indexOfObjective!].items[indexOfItemInObjectiveList!].status = "Done"
@@ -569,6 +589,15 @@ class Model {
             }
         }
         
+        if let data = try? Data(contentsOf: projectDictionaryFilePath!) {
+            let decoder = PropertyListDecoder()
+            do{
+                projectDictionary = try decoder.decode([String : Project].self, from: data)
+            } catch {
+                print("error decoding")
+            }
+        }
+        
         if activeArray.count == 0 {
 //            let newItem = Item(title: "Placeholder", timeDone: Date(), project: "None", uniqueNum: uniqueNumCounter, status: "None")
             let newItem = Placeholder(title: "Placeholder", project: "None", indx: uniqueNumCounter, status: "Active")
@@ -609,9 +638,85 @@ class Model {
             print("error encoding item array")
         }
         
+        do{
+            let data = try encoder.encode(projectDictionary)
+            try data.write(to: projectDictionaryFilePath!)
+        } catch {
+            print("error encoding item array")
+        }
+        
+        
         print("items saved")
         
     }
+    
+    //MARK: - backup plist
+    
+    func backupPlistFiles() {
+        let dateVar = Date.now.formatted(date: .abbreviated, time: .standard)
+        let docuDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        let musicDir = FileManager.default.urls(for: .musicDirectory, in: .allDomainsMask).first
+        
+        let d = musicDir!.path + "/" + dateVar
+        do {
+            try FileManager.default.createDirectory(atPath: d, withIntermediateDirectories: true, attributes: nil)
+            print("Folder created \(d)")
+        } catch (let error) {
+            print("SHITS FUCKED \(error)")
+        }
+        
+        
+        let pListArray = ["/ActiveItems.plist",
+                          "/InactiveItems.plist",
+                          "/SavedItems.plist",
+                          "/Projects.plist",
+                          "/ProjectDictionary.plist"
+        ]
+        
+        for eachFile in pListArray {
+            let bbag = docuDir!.path + "/" + eachFile
+            let bbagDest = URL(fileURLWithPath: bbag)
+            let dbag = musicDir!.path + "/" + dateVar + eachFile
+            let dbagDest = URL(fileURLWithPath: dbag)
+            let saveStatus = self.secureCopyItem(at: bbagDest, to: dbagDest)
+            if saveStatus {
+                print("All Files Copied")
+            }
+            
+        }
+        
+    }
+    
+    open func secureCopyItem(at srcURL: URL, to dstURL: URL) -> Bool {
+        do {
+            if FileManager.default.fileExists(atPath: dstURL.path) {
+                try FileManager.default.removeItem(at: dstURL)
+            }
+            try FileManager.default.copyItem(at: srcURL, to: dstURL)
+        } catch (let error) {
+            print("Cannot copy item at \(srcURL) to \(dstURL): \(error)")
+            return false
+        }
+        return true
+    }
+    
+
+    
+    
+    
+    
+    //MARK: - TESTING FUNCTIONS
+    func checkTimeDone(uniqueNumba: Int) {
+        let currentIndex = savedItems.firstIndex { $0.uniqueNum == uniqueNumba }
+        print(savedItems[currentIndex!].timeDone)
+        
+    }
+    
+    
+    
+    
+    
+    
     
     
 }

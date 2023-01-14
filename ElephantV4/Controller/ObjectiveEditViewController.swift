@@ -77,6 +77,12 @@ class ObjectiveEditViewController: UIViewController, UITableViewDataSource, UITa
             
             
             model.saveItems()
+            
+            //update the existing page's selected objective
+            
+            self.selectedObj = (model.projectDictionary[self.selectedObj.project]?.objectiveList[self.selectedObjIndex])!
+            
+            
             self.objectiveTableView.reloadData()
         }
         
