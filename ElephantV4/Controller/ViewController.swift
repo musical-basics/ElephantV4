@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //    var currentSelection: Item = Item(title: "Placeholder", timeDone: Date(), project: "None", uniqueNum: 0, status: "Active")
     var currentSelection: Placeholder = Placeholder(title: "Placeholder", project: "None", indx: 0, status: "Active")
     var currentIndx = 0
-    var numItemsShown = 10
+    var numItemsShown = 1
     var timer = Timer()
     var (hours, minutes, seconds) = (0, 0, 0)
     
@@ -48,17 +48,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             
             let newItemName = textField.text!
-            let currentNoneCounter = model.projectDictionary["None"]?.itemCounter
-            let newItemToAdd = Item(title: newItemName, project: "None", objective: "None", uniqueNum: currentNoneCounter!, status: "Inactive")
             
-            model.projectDictionary["None"]?.itemCounter = currentNoneCounter!+1
-            model.projectDictionary["None"]?.activeItems.append(newItemToAdd)
-            model.projectDictionary["None"]?.objectiveList[0].items.append(newItemToAdd)
-            
-            let placeholderCounter = model.projectDictionary["None"]?.placeholderCounter
-            let newPlaceholder = Placeholder(title: "Placeholder", project: "None", indx: placeholderCounter!, status: "Active")
-            model.activeArray.append(newPlaceholder)
-            model.projectDictionary["None"]?.placeholderCounter = placeholderCounter! + 1
+            model.addItemToNoneProject(itemName: newItemName)
             
             model.saveItems()
             self.itemTableView.reloadData()
@@ -377,9 +368,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 
 
-extension Collection {
-    /// Returns the element at the specified index if it is within bounds, otherwise nil.
-    subscript (safe index: Index) -> Element? {
-        return indices.contains(index) ? self[index] : nil
-    }
-}
+//extension Collection {
+//    /// Returns the element at the specified index if it is within bounds, otherwise nil.
+//    subscript (safe index: Index) -> Element? {
+//        return indices.contains(index) ? self[index] : nil
+//    }
+//}

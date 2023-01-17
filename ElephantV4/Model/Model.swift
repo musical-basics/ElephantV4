@@ -25,8 +25,8 @@ class Model {
         
         
 
-        activeArray =
-        [
+//        activeArray =
+//        [
 //            Placeholder(title: "Piano Placeholder 1", timeDone: Date(), project: "Piano", indx: 0, status: "Active"),
 //            Placeholder(title: "Wix Placeholder 1", timeDone: Date(), project: "Wix", indx: 1, status: "Active"),
 //            Placeholder(title: "Piano Placeholder 2", timeDone: Date(), project: "Piano", indx: 1, status: "Active"),
@@ -38,17 +38,17 @@ class Model {
 //            Placeholder(title: "None Placeholder 3", timeDone: Date(), project: "None", indx: 9, status: "Active"),
 //            Placeholder(title: "Cleaning Placeholder 2", timeDone: Date(), project: "Cleaning", indx: 2, status: "Active"),
 //            Placeholder(title: "Cleaning Placeholder 3", timeDone: Date(), project: "Cleaning", indx: 3, status: "Active")
-        ]
+//        ]
         
-        inactiveArray =
-        [
+//        inactiveArray =
+//        [
 //            Placeholder(title: "None Placeholder 3", timeDone: Date(), project: "None", indx: 3, status: "Inact"),
 //            Placeholder(title: "None Placeholder 4", timeDone: Date(), project: "None", indx: 4, status: "Inact"),
 //            Placeholder(title: "Piano Placeholder 4", timeDone: Date(), project: "Piano", indx: 4, status: "Inact"),
 //            Placeholder(title: "None Placeholder 5", timeDone: Date(), project: "None", indx: 5, status: "Inact"),
 //            Placeholder(title: "Piano Placeholder 5", timeDone: Date(), project: "Piano", indx: 5, status: "Inact"),
 //            Placeholder(title: "Piano Placeholder 6", timeDone: Date(), project: "Piano", indx: 6, status: "Inact")
-        ]
+//        ]
         
 //        projectArray =
 //        [
@@ -124,10 +124,10 @@ class Model {
         
         
         
-        var noneProject = Project(name: "None", completed: false, priority: 3, type: "Project", itemCounter: 3, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0)
-        let noneObjective = Objective(name: "None", cycle: false, completed: false, items: [], project: "None")
-        noneProject.objectiveList.append(noneObjective)
-        projectDictionary["None"] = noneProject
+//        var noneProject = Project(name: "None", completed: false, priority: 10000, type: "Project", itemCounter: 3, activeItems: [], inactiveItems: [], objectiveCounter: 0, objectiveList: [], placeholderCounter: 0)
+//        let noneObjective = Objective(name: "None", cycle: false, completed: false, items: [], project: "None")
+//        noneProject.objectiveList.append(noneObjective)
+//        projectDictionary["None"] = noneProject
         
         
         if let checkNil = activeArray[safe: 0] {
@@ -183,9 +183,21 @@ class Model {
 
     }
     
+    func addItemToNoneProject(itemName: String) {
     
+        let currentNoneCounter = projectDictionary["None"]?.itemCounter
+        let itemToAdd = Item(title: itemName, project: "None", objective: "None", uniqueNum: currentNoneCounter!, status: "Inactive")
+        
+        projectDictionary["None"]?.itemCounter = currentNoneCounter!+1
+        projectDictionary["None"]?.activeItems.append(itemToAdd)
+        projectDictionary["None"]?.objectiveList[0].items.append(itemToAdd)
+        
+        let placeholderCounter = projectDictionary["None"]?.placeholderCounter
+        let newPlaceholder = Placeholder(title: "Placeholder", project: "None", indx: placeholderCounter!, status: "Active")
+        activeArray.append(newPlaceholder)
+        projectDictionary["None"]?.placeholderCounter = placeholderCounter! + 1
     
-    
+    }
     
     //MARK: - PLACEHOLDER MANAGEMENT
     
@@ -719,4 +731,12 @@ class Model {
     
     
     
+}
+
+
+extension Collection {
+    /// Returns the element at the specified index if it is within bounds, otherwise nil.
+    subscript (safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
 }
