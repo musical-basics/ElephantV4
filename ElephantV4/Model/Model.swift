@@ -459,6 +459,7 @@ class Model {
     
     
     func completeItem(index: Int) {
+//MARK: - HANDLE PLACEHOLDERS
 //        let currentIndex = activeArray.firstIndex { $0.indx == index }
         
         let currentProjectOfItem = activeArray[index].project
@@ -481,7 +482,7 @@ class Model {
         activeArray[index].timeDone = Date()
         activeArray.remove(at: index)
         
-        //handle actual items
+//MARK: - handle actual items
         var currentProject = projectDictionary[currentProjectOfItem]!
 //        let actualItemIndex = currentProject.activeItems.firstIndex { $0.uniqueNum == placeholderIndex }
         let activeItemIndex = 0
@@ -533,6 +534,11 @@ class Model {
             currentProject.activeItems[activeItemIndex].status = "Done"
 //            print(currentProject.activeItems[actualItemIndex!].title)
             
+            
+            //add to saved items
+            let saveThisItem = currentProject.activeItems[activeItemIndex]
+            savedItems.append(saveThisItem)
+            
             //remove item from active list
             currentProject.activeItems.remove(at: activeItemIndex)
             
@@ -544,6 +550,12 @@ class Model {
             
         } else {
             projectDictionary[currentProjectOfItem]!.activeItems[activeItemIndex].status = "Done"
+            
+            //save item
+            let saveThisItem = currentProject.activeItems[activeItemIndex]
+            savedItems.append(saveThisItem)
+            
+            //remove from active items list
             currentProject.activeItems.remove(at: activeItemIndex)
             //find item's index in objective list
             let indexOfItemInObjectiveList = currentProject.objectiveList[indexOfObjective!].items.firstIndex { $0.uniqueNum == currentItem.uniqueNum }

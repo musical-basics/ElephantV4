@@ -217,6 +217,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
 //MARK: - Third Button Row
     
+    
+    @IBAction func completeItemObj(_ sender: UIButton) {
+        let currentProjectName = currentSelection.project
+        let currentProject = model.projectDictionary[currentProjectName]
+        let currentObjective = currentProject?.objectiveList[0]
+      
+        
+        model.completeItem(index: currentIndx)
+        model.completeObjective(objective: currentObjective!)
+        
+        model.activateNextItem()
+        model.saveItems()
+        self.itemTableView.reloadData()
+        
+        if let checkEmpty = model.activeArray[safe: 0] {
+            currentSelection = model.activeArray[0]
+        } else {
+            currentSelection = Placeholder(title: "Placeholder", project: "None", indx: 0, status: "Active")
+        }
+        
+        timer.invalidate()
+        (hours, minutes, seconds) = (0, 0, 0)
+        timeLabel.text = "00:00:00"
+        startButtonOutlet.isHidden = false
+        startTimer()
+        totalTasksLabel.text = "Total Tasks: \(model.activeArray.count)"
+        
+    }
+    
+    
+    
     @IBAction func completeObjectivePressed(_ sender: UIButton) {
         let currentProjectName = currentSelection.project
         let currentProject = model.projectDictionary[currentProjectName]
@@ -238,6 +269,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
+
     
     
     

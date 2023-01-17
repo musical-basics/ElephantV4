@@ -173,8 +173,18 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="F2w-j7-ZAC" userLabel="3rd Button Stack">
                                 <rect key="frame" x="15" y="318" width="360" height="40"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQl-1s-f3S">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Complete Item + Objective">
+                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="completeItemObj:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w14-xJ-cau"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spf-AA-S5X">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="40"/>
+                                        <rect key="frame" x="120" y="0.0" width="120" height="40"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Complete Objective">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
@@ -184,7 +194,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyc-AR-p3n">
-                                        <rect key="frame" x="180" y="0.0" width="180" height="40"/>
+                                        <rect key="frame" x="240" y="0.0" width="120" height="40"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Complete Project">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
