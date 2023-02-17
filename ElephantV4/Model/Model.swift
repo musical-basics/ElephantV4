@@ -228,13 +228,20 @@ class Model {
 //        print(placeholderInsertArray)
         print(placeholderCounter)
         projectDictionary[project.name]?.placeholderCounter = placeholderCounter
-        let inactiveItems = insertItems(itemsToInsert: placeholderInsertArray, priority: project.priority)
+        
+        //BELOW LINE IS IF I WANT TO INSERT THE PROJECT IMMEDIATELY INTO THE ACTIVE ARRAY
+//        let inactiveItems = insertItems(itemsToInsert: placeholderInsertArray, priority: project.priority)
+        
+        
+        //this line makes sure that all of the projects are inserted into the INACTIVE array - so we skip the insertItems function
+        let inactiveItems = placeholderInsertArray
         
         inactiveArray.append(contentsOf: inactiveItems)
         
 //        return inactiveItems
     }
     
+    //this below command is not run if we are not INSERTING the new project into the ACTIVE array (but rather just letting it naturally filter into the active array via the completion process)
     func insertItems(itemsToInsert: [Placeholder], priority: Int) -> [Placeholder] {
         var inactivatedItems: [Placeholder] = []
         if activeArray.count == 0 {
