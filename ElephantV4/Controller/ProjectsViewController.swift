@@ -21,6 +21,12 @@ class ProjectsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     
+    @IBAction func deleteProjectPressed(_ sender: UIButton) {
+        let projToDelete = selectedProject.name
+        model.projectDictionary.removeValue(forKey: projToDelete)
+        self.keysArray = Array(model.projectDictionary.keys)
+        self.projectsTableView.reloadData()
+    }
     
     
     
